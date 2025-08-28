@@ -28,6 +28,7 @@
 declare module '$env/static/private' {
 	export const DISCORD_WEBHOOK_URL: string;
 	export const TERM_PROGRAM: string;
+	export const CLAUDE_CODE_ENTRYPOINT: string;
 	export const NODE: string;
 	export const INIT_CWD: string;
 	export const SHELL: string;
@@ -38,6 +39,7 @@ declare module '$env/static/private' {
 	export const TERM_SESSION_ID: string;
 	export const npm_config_registry: string;
 	export const ZSH: string;
+	export const GIT_EDITOR: string;
 	export const USER: string;
 	export const LS_COLORS: string;
 	export const COMMAND_MODE: string;
@@ -56,6 +58,7 @@ declare module '$env/static/private' {
 	export const __CFBundleIdentifier: string;
 	export const PWD: string;
 	export const npm_command: string;
+	export const OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE: string;
 	export const npm_config__jsr_registry: string;
 	export const npm_lifecycle_event: string;
 	export const LANG: string;
@@ -76,10 +79,12 @@ declare module '$env/static/private' {
 	export const LOGNAME: string;
 	export const LESS: string;
 	export const npm_lifecycle_script: string;
+	export const COREPACK_ENABLE_AUTO_PIN: string;
 	export const npm_config_user_agent: string;
 	export const HOMEBREW_CELLAR: string;
 	export const INFOPATH: string;
 	export const LC_TERMINAL: string;
+	export const CLAUDECODE: string;
 	export const COLORTERM: string;
 	export const npm_node_execpath: string;
 	export const NODE_ENV: string;
@@ -116,6 +121,7 @@ declare module '$env/dynamic/private' {
 	export const env: {
 		DISCORD_WEBHOOK_URL: string;
 		TERM_PROGRAM: string;
+		CLAUDE_CODE_ENTRYPOINT: string;
 		NODE: string;
 		INIT_CWD: string;
 		SHELL: string;
@@ -126,6 +132,7 @@ declare module '$env/dynamic/private' {
 		TERM_SESSION_ID: string;
 		npm_config_registry: string;
 		ZSH: string;
+		GIT_EDITOR: string;
 		USER: string;
 		LS_COLORS: string;
 		COMMAND_MODE: string;
@@ -144,6 +151,7 @@ declare module '$env/dynamic/private' {
 		__CFBundleIdentifier: string;
 		PWD: string;
 		npm_command: string;
+		OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE: string;
 		npm_config__jsr_registry: string;
 		npm_lifecycle_event: string;
 		LANG: string;
@@ -164,10 +172,12 @@ declare module '$env/dynamic/private' {
 		LOGNAME: string;
 		LESS: string;
 		npm_lifecycle_script: string;
+		COREPACK_ENABLE_AUTO_PIN: string;
 		npm_config_user_agent: string;
 		HOMEBREW_CELLAR: string;
 		INFOPATH: string;
 		LC_TERMINAL: string;
+		CLAUDECODE: string;
 		COLORTERM: string;
 		npm_node_execpath: string;
 		NODE_ENV: string;

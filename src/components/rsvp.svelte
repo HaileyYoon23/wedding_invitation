@@ -2,23 +2,76 @@
 	import { _ } from 'svelte-i18n';
 	import { localeStore } from '../i18n.svelte';
 	import { LoaderCircle } from '@lucide/svelte';
-	import { enhance } from '$app/forms';
 	import RsvpSelect from './rsvp-select.svelte';
 	import rsvpDeco from '$lib/assets/rsvp-deco.svg';
 	import RsvpAccordion from './rsvp-accordion.svelte';
 
-	let { form } = $props();
-
 	let rsvp = $state<'yes' | 'no' | null>(null);
 	let submitting = $state(false);
+	let formResult = $state<{ success?: boolean; emailError?: boolean; missingName?: boolean; missingRsvp?: boolean; name?: string } | null>(null);
 
-	function clearValidationMessage(formInput: 'name' | 'rsvp') {
-		if (formInput === 'name' && form?.missingName) {
-			form = null;
+	async function sendDiscordMessage(text: string) {
+		const now = new Date();
+		const timestamp = now.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+		const message = {
+			content: `[${timestamp}] ${text}`
+		};
+		
+		const response = await fetch('https://discordapp.com/api/webhooks/1410565116084097159/PgYypMOEyPul5b0kH8t3JFm-RuqJkLV8-qEYlLyWqMiIpnqaV9GH88F-tSmdVAbgzW7p', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(message)
+		});
+		
+		return response.ok;
+	}
+
+	async function handleSubmit(event: Event) {
+		event.preventDefault();
+		submitting = true;
+		formResult = null;
+
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+		const name = formData.get('fullname')?.toString().trim();
+
+		if (!name) {
+			formResult = { missingName: true };
+			submitting = false;
+			return;
 		}
 
-		if (formInput === 'rsvp' && form?.missingRsvp) {
-			form = null;
+		if (!rsvp) {
+			formResult = { missingRsvp: true };
+			submitting = false;
+			return;
+		}
+
+		const rsvpText = rsvp === 'yes' ? '참석' : '불참';
+		const message = `🎉 결혼식 참석여부 회신\n👤 이름: ${name}\n✅ 참석여부: ${rsvpText}`;
+		
+		const success = await sendDiscordMessage(message);
+		
+		if (!success) {
+			formResult = { name, emailError: true };
+		} else {
+			formResult = { success: true };
+			rsvp = null;
+			form.reset();
+		}
+
+		submitting = false;
+	}
+
+	function clearValidationMessage(formInput: 'name' | 'rsvp') {
+		if (formInput === 'name' && formResult?.missingName) {
+			formResult = null;
+		}
+
+		if (formInput === 'rsvp' && formResult?.missingRsvp) {
+			formResult = null;
 		}
 	}
 </script>
@@ -34,25 +87,12 @@
 
 	<form
 		class="rsvp-form"
-		method="POST"
-		action="?/rsvp"
-		use:enhance={({ formData }) => {
-			submitting = true;
-			formData.append('rsvp', rsvp ?? '');
-			return ({ update, result }) => {
-				update({}).finally(() => {
-					submitting = false;
-					if (result.status === 200) {
-						rsvp = null;
-					}
-				});
-			};
-		}}
+		onsubmit={handleSubmit}
 	>
 		<input
 			class="fullname {localeStore.locale}"
 			name="fullname"
-			value={form?.name ?? ''}
+			value={formResult?.name ?? ''}
 			placeholder={$_('rsvp.fullname_placeholder')}
 			onfocus={() => clearValidationMessage('name')}
 		/>
@@ -70,22 +110,22 @@
 		</button>
 	</form>
 	<div class="submit-message">
-		{#if form?.success}
+		{#if formResult?.success}
 			<p class="success {localeStore.locale}">
 				{$_('rsvp.email_success')}
 			</p>
 		{/if}
-		{#if form?.emailError}
+		{#if formResult?.emailError}
 			<p class="error {localeStore.locale}">
 				{$_('rsvp.email_error')}
 			</p>
 		{/if}
-		{#if form?.missingName}
+		{#if formResult?.missingName}
 			<p class="error {localeStore.locale}">
 				{$_('rsvp.missing_name_error')}
 			</p>
 		{/if}
-		{#if form?.missingRsvp}
+		{#if formResult?.missingRsvp}
 			<p class="error {localeStore.locale}">
 				{$_('rsvp.missing_rsvp_error')}
 			</p>
