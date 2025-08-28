@@ -26,14 +26,14 @@
 			"no": "참석하지 못합니다."
 		},
 		"accordion": {
-			"dress_code": "드레스 코드",
-			"the_menu": "식사 메뉴",
-			"semi_formal": "세미 포멀",
-			"suit_and_tie": "‘결혼식 느낌’ 나게 예쁘게 오셔요! 정장과 칵테일 드레스 환영입니다.",
-			"menu_title": "듀엣 앙트레 코스",
-			"beef": "저온 조리한 갈비살 스테이크",
-			"fish": "된장 글레이즈를 입힌 하와이안 버터피쉬",
-			"vegetarian": "채식 메뉴도 준비되어 있으니, 원하시는 경우 미리 알려주세요."
+			"dress_code": "test1",
+			"the_menu": "test2",
+			"semi_formal": "test1 content",
+			"suit_and_tie": "test2 content",
+			"menu_title": "test3",
+			"beef": "test4",
+			"fish": "test5",
+			"vegetarian": "test6"
 		}
 	},
 	"gallery": {

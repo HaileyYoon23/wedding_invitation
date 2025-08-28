@@ -10,10 +10,10 @@
 		title: string;
 	}>;
 
-	const items: Item[] = [
+	const items_2: Item[] = [
 	];
 
-	const items_2: Item[] = [
+	const items: Item[] = [
 		{ id: '1', title: $_('rsvp.accordion.dress_code') },
 		{ id: '2', title: $_('rsvp.accordion.the_menu') }
 	];
