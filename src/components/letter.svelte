@@ -23,7 +23,7 @@
 		{#if localeStore.isEn}
 			<div class="letter-signature">
 				<p class="en">with love</p>
-				<p class="en">Emily & Anthony</p>
+				<p class="en">DongHyun & YoonSeo</p>
 			</div>
 		{:else}
 			<div class="family-description kr">

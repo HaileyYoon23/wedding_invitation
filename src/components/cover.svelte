@@ -38,7 +38,7 @@
 
 	<div class="cover-title-container">
 		<div class="names-en-box">
-			<span class="names en-sacramento">Anthony & Emily</span>
+			<span class="names en-sacramento">DongHyun & YoonSeo</span>
 		</div>
 
 		<div class="event-date-and-place-box">
