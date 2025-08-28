@@ -18,10 +18,14 @@
 	}
 
 	onMount(() => {
-		// 페이지 로드 후 1초 동안 페이드인
-		setTimeout(() => {
-			coverLoaded = true;
-		}, 100);
+		// Android에서 렌더링을 강제로 기다린 후 페이드인 시작
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				setTimeout(() => {
+					coverLoaded = true;
+				}, 50);
+			});
+		});
 	});
 </script>
 
@@ -66,6 +70,10 @@
 		background-size: cover;
 		opacity: 0;
 		transition: opacity 1.3s ease-in-out;
+		/* Android WebKit 브라우저를 위한 하드웨어 가속 */
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		will-change: opacity;
 
 		&.loaded {
 			opacity: 1;
