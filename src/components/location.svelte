@@ -31,19 +31,39 @@
 				const options = {
 					// @ts-ignore
 					center: new window.kakao.maps.LatLng(37.515711, 127.105725),
-					level: 4
+					level: 4,
+					draggable: false,
 				};
 				// @ts-ignore
 				const map = new window.kakao.maps.Map(mapContainer, options);
 				
+				// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+				const mapTypeControl = new window.kakao.maps.MapTypeControl();
+
+				// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+				map.addControl(mapTypeControl, window.kakao.maps.ControlPosition.TOPRIGHT);
+
+				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+				const zoomControl = new window.kakao.maps.ZoomControl();
+				map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
+
+
 				// 마커 추가
 				// @ts-ignore
 				const markerPosition = new window.kakao.maps.LatLng(37.515711, 127.105725);
 				// @ts-ignore
 				const marker = new window.kakao.maps.Marker({
-					position: markerPosition
+					position: markerPosition,
+					clickable: true
 				});
 				marker.setMap(map);
+
+				// 마커 클릭 이벤트 추가
+				// @ts-ignore
+				window.kakao.maps.event.addListener(marker, 'click', function() {
+					// 카카오맵 사이트로 이동
+					window.open('https://map.kakao.com/?urlX=523433.00000000105&urlY=1115645.0000000023&urlLevel=3&itemId=17651361&q=%EB%8D%94%EC%BB%A8%EB%B2%A4%EC%85%98%20%EC%9E%A0%EC%8B%A4%EC%A0%90&srcid=17651361&map_type=TYPE_MAP', '_blank');
+				});
 			});
 		};
 		document.head.appendChild(script);
