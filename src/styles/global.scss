@@ -1,0 +1,111 @@
+.kr {
+	font-family: 'Noto Serif KR', serif;
+	font-display: block;
+	color: $font-color-default;
+	word-break: keep-all;
+}
+
+.en {
+	font-family: 'Cormorant Garamond', serif;
+	font-weight: 500;
+	font-style: normal;
+	font-display: block;
+	color: $font-color-default;
+}
+
+.en-sacramento {
+	font-family: 'Sacramento', serif;
+	font-weight: 400;
+	font-style: normal;
+	color: $font-color-default;
+}
+
+:root {
+	font-size: 0.9375em; // 15px when default is 16px
+
+	@include for-range($mobile-md) {
+		font-size: 1em;
+	}
+
+	@include for-range($mobile-lg) {
+		font-size: 1.0625em; // 17px when default is 16px
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	background-color: $bg-color-1;
+}
+
+body {
+	opacity: 0;
+	transition: opacity 0.5s ease-in;
+}
+
+body.loaded {
+	opacity: 1;
+}
+
+img,
+picture,
+video,
+canvas {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+input[type='text'] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+}
+
+button,
+input[type='submit'],
+input[type='reset'] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+section.cover,
+section.letter,
+section.rsvp,
+section.gallery,
+section.calendar,
+section.location {
+	max-width: $content-max-width;
+	margin: auto;
+}

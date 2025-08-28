@@ -1,0 +1,51 @@
+$primary-color: #B99493;
+$primary-color-light: #d2bdbc;
+$primary-color-light-2: #f0e4e4;
+$primary-color-dark: #8e5f5d;
+$white: #FFF;
+$white-2: #eaeaea;
+$bg-color-1: #EFEAE4;
+$green-1: #31a671;
+$red-1: #e54f4f;
+$blue-1: rgb(114, 187, 223);
+$font-color-default: #434343;
+$font-color-light: #a3a3a3;
+$font-color-heading: #B99493;
+$gray-1: #c8c8c8;
+
+$title-fs-kr: 1.3rem;
+$title-fw-kr: 600;
+
+$title-fs-en: 1.8rem;
+$title-fw-en: 700;
+
+$content-max-width: 600px;
+
+$mobile-sm: "(max-width: 380px)";
+$mobile-md: "(min-width: 381px) and (max-width: 410px)";
+$mobile-lg: "(min-width: 411px)";
+
+@mixin for-range($query) {
+  @media #{$query} {
+    @content;
+  }
+}
+
+.input-focused {
+  outline: solid;
+  outline-width: 3px;
+  outline-color: $blue-1;
+}
+
+
+.title-font-kr {
+  color: $primary-color;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.title-font-en {
+  color: $primary-color;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
