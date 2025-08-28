@@ -1,22 +1,54 @@
 <script lang="ts">
 	import locationTopWave from '$lib/assets/location-top-wave.svg';
-
 	import locationDeco from '$lib/assets/location-deco.svg';
 	import { _ } from 'svelte-i18n';
 	import { localeStore } from '../i18n.svelte';
 	import { Clipboard, Github } from '@lucide/svelte';
-	import { PUBLIC_GOOGLE_MAPS_API_KEY } from '$env/static/public';
+	import { onMount } from 'svelte';
 
-	const googleMapsUrl = `https://www.google.com/maps/embed/v1/place?key=${PUBLIC_GOOGLE_MAPS_API_KEY}&q=${encodeURIComponent('108 Lamplighter, Irvine, CA 92620')}`;
+	let mapContainer: HTMLElement;
+	let showCopyModal = $state(false);
 
 	function copyAddress() {
 		navigator.clipboard
-			.writeText('108 Lamplighter, Irvine, CA 92620')
-			.then(() => alert($_('location.address_copied')))
+			.writeText('서울 송파구 올림픽로 319 3층')
+			.then(() => {
+				showCopyModal = true;
+				setTimeout(() => {
+					showCopyModal = false;
+				}, 1300);
+			})
 			.catch(() => null);
 	}
-</script>
 
+	onMount(() => {
+		// Kakao Maps 스크립트 로드
+		const script = document.createElement('script');
+		script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=5fb1510d2c5d6e295def723502664492&autoload=false';
+		script.onload = () => {
+			// @ts-ignore
+			window.kakao.maps.load(() => {
+				const options = {
+					// @ts-ignore
+					center: new window.kakao.maps.LatLng(37.515711, 127.105725),
+					level: 4
+				};
+				// @ts-ignore
+				const map = new window.kakao.maps.Map(mapContainer, options);
+				
+				// 마커 추가
+				// @ts-ignore
+				const markerPosition = new window.kakao.maps.LatLng(37.515711, 127.105725);
+				// @ts-ignore
+				const marker = new window.kakao.maps.Marker({
+					position: markerPosition
+				});
+				marker.setMap(map);
+			});
+		};
+		document.head.appendChild(script);
+	});
+</script>
 <img src={locationTopWave} class="location-top-wave" alt="" />
 <section class="location">
 	<h2 class="title {localeStore.locale}">{$_('location.title')}</h2>
@@ -27,21 +59,24 @@
 		</span>
 		<span class="address">서울 송파구 올림픽로 319 3층</span></button
 	>
-	<div class="map">
-		<iframe
-			class="google-maps"
-			title="google maps"
-			allowfullscreen
-			referrerpolicy="no-referrer-when-downgrade"
-			src={googleMapsUrl}
-		></iframe>
-	</div>
-	<p class="signature en">made with ♡ by Emily & Anthony</p>
-	<a class="github-icon" href="https://github.com/anthopark/our-wedding-invitation" target="_blank"
+	<div class="map" bind:this={mapContainer}></div>
+	<p class="signature en">made ♡ by Yoonseo & Donghyun</p>
+	<a class="github-icon" href="https://github.com/HaileyYoon23" target="_blank"
 		><Github size="1.1em" strokeWidth={1} /></a
 	>
 	<img class="location-deco" src={locationDeco} alt="" />
 </section>
+
+<!-- Copy Success Modal -->
+{#if showCopyModal}
+	<div class="copy-modal" class:show={showCopyModal}>
+		<div class="modal-content">
+			<p class="{localeStore.locale}">
+				{$_('location.address_copied')}
+			</p>
+		</div>
+	</div>
+{/if}
 
 <style lang="scss">
 	img.location-top-wave {
@@ -105,6 +140,8 @@
 		width: 100%;
 		height: 16em;
 		margin-bottom: 7em;
+		border-radius: 8px;
+		overflow: hidden;
 	}
 
 	iframe.google-maps {
@@ -128,5 +165,65 @@
 		position: absolute;
 		bottom: 2.5em;
 		right: 1.5em;
+	}
+
+	.copy-modal {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1000;
+		opacity: 0;
+		transition: opacity 0.3s ease-in-out;
+		pointer-events: none;
+
+		&.show {
+			opacity: 1;
+			animation: fadeInOut 1.3s ease-in-out forwards;
+		}
+
+		.modal-content {
+			background: rgba(24, 24, 24, 0.8);
+			color: white;
+			padding: 1rem 1.5rem;
+			border-radius: 8px;
+			box-shadow: 0 4px 12px rgb(255, 255, 255);
+			backdrop-filter: blur(10px);
+
+			p {
+				margin: 0;
+				text-align: center;
+				color: white;
+				
+				&.kr {
+					font-size: 0.9rem;
+					font-weight: 500;
+				}
+
+				&.en {
+					font-size: 1rem;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+
+	@keyframes fadeInOut {
+		0% {
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0.9);
+		}
+		15% {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
+		85% {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
+		100% {
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0.9);
+		}
 	}
 </style>
