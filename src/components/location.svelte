@@ -63,7 +63,7 @@
 				// @ts-ignore
 				window.kakao.maps.event.addListener(marker, 'click', function() {
 					// 카카오맵 사이트로 이동
-					window.open('https://map.kakao.com/?urlX=523433.00000000105&urlY=1115645.0000000023&urlLevel=3&itemId=17651361');
+					window.open('https://place.map.kakao.com/17651361');
 				});
 			});
 		};
