@@ -3,9 +3,11 @@
 	import { browser } from '$app/environment';
 	import { Confetti } from 'svelte-confetti';
 	import { _ } from 'svelte-i18n';
+	import { onMount } from 'svelte';
 
 	const maxSectionHeight = 900;
 	let sectionHeight = $state(maxSectionHeight);
+	let coverLoaded = $state(false);
 
 	function setSectionHeight() {
 		sectionHeight = window.innerHeight < maxSectionHeight ? window.innerHeight : maxSectionHeight;
@@ -14,9 +16,16 @@
 	if (browser && window.matchMedia('(max-width: 1024px)')) {
 		setSectionHeight();
 	}
+
+	onMount(() => {
+		// 페이지 로드 후 1초 동안 페이드인
+		setTimeout(() => {
+			coverLoaded = true;
+		}, 100);
+	});
 </script>
 
-<section style:height={`${sectionHeight}px`} class="cover">
+<section style:height={`${sectionHeight}px`} class="cover" class:loaded={coverLoaded}>
 	<div class="confetti-area">
 		<Confetti
 			x={[-5, 5]}
@@ -55,6 +64,12 @@
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: cover;
+		opacity: 0;
+		transition: opacity 1.3s ease-in-out;
+
+		&.loaded {
+			opacity: 1;
+		}
 	}
 	.confetti-area {
 		position: absolute;
