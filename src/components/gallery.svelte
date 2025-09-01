@@ -1,4 +1,5 @@
 <script lang="ts">
+	import photo1 from '$lib/assets/gallery/1.webp';
 	import photo2 from '$lib/assets/gallery/2.webp';
 	import photo3 from '$lib/assets/gallery/3.webp';
 	import photo4 from '$lib/assets/gallery/4.webp';
@@ -9,6 +10,7 @@
 	import photo9 from '$lib/assets/gallery/9.webp';
 	import photo10 from '$lib/assets/gallery/10.webp';
 	import photo11 from '$lib/assets/gallery/11.webp';
+	import photo12 from '$lib/assets/gallery/12.webp';
 
 	import PhotoSwipeLightBox from 'photoswipe/lightbox';
 	import PhotoSwipe from 'photoswipe';
@@ -30,9 +32,9 @@
 
 	const photos = [
 		{
-			src: photo10,
-			width: 1200,
-			height: 1800
+			src: photo1,
+			width: 1240,
+			height: 1844
 		},
 		{
 			src: photo2,
@@ -51,33 +53,43 @@
 		},
 		{
 			src: photo5,
-			width: 1200,
-			height: 1800
+			width: 3432,
+			height: 4480
 		},
 		{
 			src: photo6,
-			width: 2000,
-			height: 1333
+			width: 2750,
+			height: 2750
 		},
 		{
 			src: photo7,
-			width: 1200,
-			height: 1800
+			width: 1179,
+			height: 1539
 		},
 		{
 			src: photo8,
-			width: 1200,
-			height: 1800
+			width: 3024,
+			height: 4032
 		},
 		{
 			src: photo9,
-			width: 1200,
-			height: 1790
+			width: 4284,
+			height: 4284
+		},
+		{
+			src: photo10,
+			width: 4032,
+			height: 3024
 		},
 		{
 			src: photo11,
-			width: 1200,
-			height: 1790
+			width: 3024,
+			height: 3024
+		},
+		{
+			src: photo12,
+			width: 4284,
+			height: 5712
 		}
 	];
 </script>
@@ -140,26 +152,19 @@
 
 	#gallery {
 		display: grid;
-		gap: 1em;
-		grid-template-columns: repeat(2, 1fr);
-		grid-auto-rows: 6.5em;
+		gap: 0.5em;
+		grid-template-columns: repeat(3, 1fr);
+		grid-auto-rows: 4.5em;
 	}
 
 	img.thumbnail {
-		border-radius: 4px;
+		border-radius: 2px;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
 
-	.slide:nth-child(1),
-	.slide:nth-child(2),
-	.slide:nth-child(3),
-	.slide:nth-child(5),
-	.slide:nth-child(7),
-	.slide:nth-child(8),
-	.slide:nth-child(9),
-	.slide:nth-child(10) {
+	.slide {
 		grid-row: span 2;
 	}
 </style>
