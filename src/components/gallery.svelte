@@ -36,18 +36,18 @@
 		},
 		{
 			src: photo2,
-			width: 1200,
-			height: 1800
+			width: 1179,
+			height: 754
 		},
 		{
 			src: photo3,
-			width: 1200,
-			height: 1800
+			width: 2160,
+			height: 2160
 		},
 		{
 			src: photo4,
-			width: 2000,
-			height: 1333
+			width: 3024,
+			height: 3024
 		},
 		{
 			src: photo5,

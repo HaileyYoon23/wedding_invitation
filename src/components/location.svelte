@@ -81,7 +81,7 @@
 		<span class="address">서울 송파구 올림픽로 319 3층</span></button
 	>
 	<div class="map" bind:this={mapContainer}></div>
-	<p class="signature en">made ♡ by Yoonseo & Donghyun</p>
+	<p class="signature en">made ♡ by Yoonseo</p>
 	<a class="github-icon" href="https://github.com/HaileyYoon23" target="_blank"
 		><Github size="1.1em" strokeWidth={1} /></a
 	>
