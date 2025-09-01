@@ -18,7 +18,12 @@
 	</div>
 
 	<div class="letter-container">
-		<p class="letter {localeStore.locale}">{$_('letter.letter_content')}</p>
+		<p class="letter {localeStore.locale}">{$_('letter.letter_content0')}</p>
+		<p class="letter {localeStore.locale}">{$_('letter.letter_content1')}</p>
+		<p class="letter {localeStore.locale}">{$_('letter.letter_content2')}</p>
+		<p class="letter {localeStore.locale}">{$_('letter.letter_content3')}</p>
+		<p class="letter {localeStore.locale}">{$_('letter.letter_content4')}</p>
+		<p class="letter {localeStore.locale}">{$_('letter.letter_content5')}</p>
 
 		{#if localeStore.isEn}
 			<div class="letter-signature">

@@ -9,11 +9,16 @@
 	"letter": {
 		"date": "2026.1.31",
 		"sub_title": "두 사람의 결혼식에 초대합니다.",
-		"letter_content": "봄을 앞둔 겨울날, \n곁에 있을 때 가장 나다운  \n모습이 되게 하는 사람과\n삶의 여행을 떠나고자 합니다.\n저희 여행의 출발을 축복해 주시면\n큰 기쁨이 되겠습니다."
+		"letter_content0": "봄을 앞둔 겨울날,",
+		"letter_content1": "곁에 있을 때 가장 ",
+		"letter_content2": "나다운 모습이 되게 하는 사람과",
+		"letter_content3": "삶의 여행을 떠나고자 합니다.",
+		"letter_content4": "저희 여행의 출발을 축복해 주시면",
+		"letter_content5": "큰 기쁨이 되겠습니다."
 	},
 	"rsvp": {
 		"title": "축하메세지 남기기",
-		"reply_by": "신랑, 신부에게 전하는 소중한 마음들.",
+		"reply_by": "신랑, 신부에게 전하는 소중한 마음들",
 		"fullname_placeholder": "성함 (예: 홍길동)",
 		"send": "보내기",
 		"missing_name_error": "성함을 입력해주세요.",
