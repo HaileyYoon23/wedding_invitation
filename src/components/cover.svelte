@@ -117,7 +117,7 @@
 			display: block;
 			color: $white;
 			word-spacing: 5px;
-			font-size: 2.2rem;
+			font-size: 3.5rem;
 		}
 	}
 
@@ -133,7 +133,7 @@
 			color: $white;
 
 			&.kr {
-				font-size: 1rem;
+				font-size: 1.3rem;
 			}
 
 			&.en {

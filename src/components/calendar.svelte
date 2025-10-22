@@ -67,8 +67,9 @@
 
 		img.calendar-deco {
 			position: absolute;
-			bottom: 0.5em;
-			right: 2.5em;
+			bottom: 19.5em;
+			right: 4.5em;
+			width: 15%;
 			cursor: pointer;
 			transition: transform 0.2s ease;
 
