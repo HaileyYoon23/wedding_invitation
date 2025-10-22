@@ -33,38 +33,38 @@
 	const photos = [
 		{
 			src: photo1,
-			width: 1240,
-			height: 1844
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo2,
-			width: 1179,
-			height: 754
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo3,
-			width: 2160,
-			height: 2160
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo4,
-			width: 3024,
-			height: 3024
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo5,
-			width: 3432,
-			height: 4480
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo6,
-			width: 2750,
-			height: 2750
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo7,
-			width: 1179,
-			height: 1539
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo8,

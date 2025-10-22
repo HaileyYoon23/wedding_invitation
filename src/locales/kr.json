@@ -24,9 +24,10 @@
 		"missing_name_error": "성함을 입력해주세요.",
 		"missing_rsvp_error": "전하는 마음을 적어주세요.",
 		"email_error": "오류가 발생했습니다. 다시 시도해 주세요.",
-		"email_success": "참석여부를 보냈습니다. 감사합니다!",
+		"email_success": "메세지를 전송했습니다.",
+		"message_placeholder": "메세지를 입력해주세요.",
 		"select": {
-			"select_attendance": "참석여부 선택",
+			"select_attendance": "메세지 입력하기",
 			"yes": "참석합니다.",
 			"no": "참석하지 못합니다."
 		},

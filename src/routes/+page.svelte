@@ -5,6 +5,7 @@
 	import Cover from '../components/cover.svelte';
 	import Location from '../components/location.svelte';
 	import Gallery from '../components/gallery.svelte';
+	import Fin from '../components/fin.svelte';
 </script>
 
 <Cover />
@@ -13,3 +14,4 @@
 <Gallery />
 <Calendar />
 <Location />
+<Fin />

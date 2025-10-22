@@ -2,7 +2,7 @@
 	import letterBottom from '$lib/assets/letter-bottom.webp';
 	import { _ } from 'svelte-i18n';
 	import { localeStore } from '../i18n.svelte';
-	import letterDeco from '$lib/assets/letter-deco.svg';
+	import letterDeco from '$lib/assets/ribon.png';
 
 	const nameDivider = `
     <svg width="3" height="3" viewBox="0 0 3 3" fill="none" xmlns="http://www.w3.org/2000/svg">

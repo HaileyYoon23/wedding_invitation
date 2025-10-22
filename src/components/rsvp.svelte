@@ -3,12 +3,12 @@
 	import { localeStore } from '../i18n.svelte';
 	import { LoaderCircle } from '@lucide/svelte';
 	import RsvpSelect from './rsvp-select.svelte';
-	import rsvpDeco from '$lib/assets/rsvp-deco.svg';
+	import rsvpDeco from '$lib/assets/rsvp-deco.png';
 	import RsvpAccordion from './rsvp-accordion.svelte';
 
 	let rsvp = $state<'yes' | 'no' | null>(null);
 	let submitting = $state(false);
-	let formResult = $state<{ success?: boolean; emailError?: boolean; missingName?: boolean; missingRsvp?: boolean; name?: string } | null>(null);
+	let formResult = $state<{ success?: boolean; emailError?: boolean; missingName?: boolean; missingMessage?: boolean; name?: string; message?: string; } | null>(null);
 
 	async function sendDiscordMessage(text: string) {
 		const now = new Date();
@@ -36,6 +36,7 @@
 		const form = event.target as HTMLFormElement;
 		const formData = new FormData(form);
 		const name = formData.get('fullname')?.toString().trim();
+		const messageText = formData.get('message')?.toString().trim();
 
 		if (!name) {
 			formResult = { missingName: true };
@@ -43,14 +44,15 @@
 			return;
 		}
 
-		if (!rsvp) {
-			formResult = { missingRsvp: true };
+		if (!messageText) {
+			formResult = { missingMessage: true };
 			submitting = false;
 			return;
 		}
 
-		const rsvpText = rsvp === 'yes' ? '참석' : '불참';
-		const message = `🎉 결혼식 참석여부 회신\n👤 이름: ${name}\n✅ 참석여부: ${rsvpText}`;
+		
+
+		const message = `\n🎉 결혼 축하 메세지\n👤 이름: ${name}\n💌 메세지: ${messageText}`;
 		
 		const success = await sendDiscordMessage(message);
 		
@@ -65,12 +67,12 @@
 		submitting = false;
 	}
 
-	function clearValidationMessage(formInput: 'name' | 'rsvp') {
+	function clearValidationMessage(formInput: 'name' | 'message') {
 		if (formInput === 'name' && formResult?.missingName) {
 			formResult = null;
 		}
 
-		if (formInput === 'rsvp' && formResult?.missingRsvp) {
+		if (formInput === 'message' && formResult?.missingMessage) {
 			formResult = null;
 		}
 	}
@@ -96,9 +98,13 @@
 			placeholder={$_('rsvp.fullname_placeholder')}
 			onfocus={() => clearValidationMessage('name')}
 		/>
-		<div class="select-container">
-			<RsvpSelect bind:rsvp clearForm={() => clearValidationMessage('rsvp')} />
-		</div>
+		<input
+			class="message {localeStore.locale}"
+			name="message"
+			value={formResult?.message ?? ''}
+			placeholder={$_('rsvp.message_placeholder')}
+			onfocus={() => clearValidationMessage('message')}
+		/>
 		<button class="send {localeStore.locale}" type="submit" disabled={submitting}>
 			{#if submitting}
 				<div class="spinning">
@@ -149,7 +155,7 @@
 	}
 
 	img.header-deco {
-		width: 4.5em;
+		width: 8em;
 		margin-bottom: 0.8em;
 	}
 
@@ -185,6 +191,26 @@
 
 	input.fullname {
 		padding: 0.4em 0.8em;
+		width: 100%;
+		border: 1px solid $white-2;
+		border-radius: 4px;
+		letter-spacing: 0.02em;
+
+		&:active,
+		&:focus {
+			@extend .input-focused;
+		}
+		&::placeholder {
+			color: $font-color-light;
+		}
+		&.kr::placeholder {
+			font-size: 0.9rem;
+		}
+	}
+
+	input.message {
+		padding: 0.4em 0.8em;
+		margin-top: 1em;
 		width: 100%;
 		border: 1px solid $white-2;
 		border-radius: 4px;

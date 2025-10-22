@@ -1,9 +1,8 @@
 <script lang="ts">
 	import locationTopWave from '$lib/assets/location-top-wave.svg';
-	import locationDeco from '$lib/assets/location-deco.svg';
 	import { _ } from 'svelte-i18n';
 	import { localeStore } from '../i18n.svelte';
-	import { Clipboard, Github } from '@lucide/svelte';
+	import { Clipboard } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 
 	let mapContainer: HTMLElement;
@@ -81,11 +80,6 @@
 		<span class="address">서울 송파구 올림픽로 319 3층</span></button
 	>
 	<div class="map" bind:this={mapContainer}></div>
-	<p class="signature en">made by YoonSeo ♡</p>
-	<a class="github-icon" href="https://github.com/HaileyYoon23" target="_blank"
-		><Github size="1.1em" strokeWidth={1} /></a
-	>
-	<img class="location-deco" src={locationDeco} alt="" />
 </section>
 
 <!-- Copy Success Modal -->
@@ -160,7 +154,7 @@
 		margin-top: 2em;
 		width: 100%;
 		height: 16em;
-		margin-bottom: 7em;
+		margin-bottom: 1em;
 		border-radius: 8px;
 		overflow: hidden;
 	}
