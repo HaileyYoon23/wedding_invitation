@@ -14,7 +14,7 @@
 	];
 
 	const items: Item[] = [
-		{ id: '1', title: $_('rsvp.accordion.dress_code') },
+		{ id: '1', title: $_('rsvp.accordion.how_to_come') },
 		{ id: '2', title: $_('rsvp.accordion.the_menu') }
 	];
 	
@@ -23,7 +23,7 @@
 		multiple: true
 	});
 
-	const dressCodeItem = accordion.getItem(items[0]);
+	const howToComeItem = accordion.getItem(items[0]);
 	const menuItem = accordion.getItem(items[1]);
 </script>
 
@@ -42,7 +42,7 @@
 			<div
 				{...item.content}
 				class="content {localeStore.locale}"
-				transition:slide={{ duration: 350 }}
+				transition:slide={{ duration: 150 }}
 			>
 				{@render content()}
 			</div>
@@ -50,7 +50,7 @@
 	</div>
 {/snippet}
 
-{#snippet dressCodeContent()}
+{#snippet howToComeContent()}
 	<p class="semi-formal">{$_('rsvp.accordion.semi_formal')}</p>
 	<p>{$_('rsvp.accordion.suit_and_tie')}</p>
 {/snippet}
@@ -66,7 +66,7 @@
 {/snippet}
 
 <div class="accordion-root" {...accordion.root}>
-	{@render accordionItem(dressCodeItem, dressCodeContent)}
+	{@render accordionItem(howToComeItem, howToComeContent)}
 	{@render accordionItem(menuItem, menuContent)}
 </div>
 

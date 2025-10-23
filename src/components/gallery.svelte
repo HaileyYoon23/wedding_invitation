@@ -30,41 +30,44 @@
 		lightbox.init();
 	});
 
+	const w = 2709;
+	const h = 4064;
+
 	const photos = [
 		{
 			src: photo1,
-			width: 4000,
-			height: 6000
+			width: w,
+			height: h
 		},
 		{
 			src: photo2,
-			width: 4000,
-			height: 6000
+			width: w,
+			height: h
 		},
 		{
 			src: photo3,
-			width: 4000,
-			height: 6000
+			width: w,
+			height: h
 		},
 		{
 			src: photo4,
-			width: 4000,
-			height: 6000
+			width: w,
+			height: h
 		},
 		{
 			src: photo5,
-			width: 4000,
-			height: 6000
+			width: w,
+			height: h
 		},
 		{
 			src: photo6,
-			width: 4000,
-			height: 6000
+			width: w,
+			height: h
 		},
 		{
 			src: photo7,
-			width: 4000,
-			height: 6000
+			width: w,
+			height: h
 		},
 		{
 			src: photo8,
@@ -152,9 +155,9 @@
 
 	#gallery {
 		display: grid;
-		gap: 0.5em;
+		gap: 3px;
 		grid-template-columns: repeat(3, 1fr);
-		grid-auto-rows: 4.5em;
+		grid-auto-rows: 5.5em;
 	}
 
 	img.thumbnail {
