@@ -37,9 +37,9 @@
 			colorArray={['#588adb', '#f5e298', '#fff', '#9aa3f5']}
 			delay={[500, 2000]}
 			infinite
-			duration={5000}
-			amount={70}
-			fallDistance={`${sectionHeight}px`}
+			duration={4500}
+			amount={150}
+			fallDistance={`${sectionHeight+300}px`}
 		/>
 	</div>
 
@@ -117,7 +117,7 @@
 			display: block;
 			color: $white;
 			word-spacing: 5px;
-			font-size: 3.5rem;
+			font-size: 3rem;
 		}
 	}
 

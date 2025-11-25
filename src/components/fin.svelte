@@ -31,13 +31,14 @@
 </script>
 
 <section style:height={`${sectionHeight}px`} class="cover" class:loaded={coverLoaded}>
+	<img class="fin-deco" src={finDeco} alt="" />
 </section>
 
 <section class="fin">
 	<p class="signature en">made by YoonSeo ♡</p>
 	<a class="github-icon" href="https://github.com/HaileyYoon23" target="_blank"
 		><Github size="1.1em" strokeWidth={1} /></a>
-	<img class="fin-deco" src={finDeco} alt="" />
+	
 </section>
 
 <style lang="scss">
@@ -128,10 +129,10 @@
 
 	img.fin-deco {
 		position: absolute;
-		bottom: 2.5em;
-		right: 3em;
-		width: 6em;
-		height: 6em;
+		bottom: 1em;
+		right: 0.5em;
+		width: 7em;
+		height: 7em;
 	}
 
 </style>
