@@ -4,10 +4,12 @@
 	import { Confetti } from 'svelte-confetti';
 	import { _ } from 'svelte-i18n';
 	import { onMount } from 'svelte';
+	import 'animate.css';
 
 	const maxSectionHeight = 900;
 	let sectionHeight = $state(maxSectionHeight);
 	let coverLoaded = $state(false);
+	let imageVisible = $state(true);
 
 	function setSectionHeight() {
 		sectionHeight = window.innerHeight < maxSectionHeight ? window.innerHeight : maxSectionHeight;
@@ -26,10 +28,19 @@
 				}, 50);
 			});
 		});
+
+		// 3초 후 이미지 숨기기 (bounceOutUp 애니메이션 완료 후)
+		setTimeout(() => {
+			imageVisible = false;
+		}, 3000);
 	});
 </script>
 
 <section style:height={`${sectionHeight}px`} class="cover" class:loaded={coverLoaded}>
+	{#if imageVisible}
+		<img src="/src/lib/assets/etc/로아_사진.png" alt="로아" class="animate__animated roa_cat" />
+		<img src="/src/lib/assets/etc/한아_사진.png" alt="한아" class="animate__animated hana_cat" />
+	{/if}
 	<div class="confetti-area">
 		<Confetti
 			x={[-5, 5]}
@@ -62,6 +73,28 @@
 </section>
 
 <style lang="scss">
+	.roa_cat {
+		display: inline-block;
+		margin: 0 0.5rem;
+
+		animation: bounceOutUp; /* referring directly to the animation's @keyframe declaration */
+		animation-duration: 3s; /* don't forget to set a duration! */
+	}
+	.hana_cat {
+		display: inline-block;
+		margin: 0 0.5rem;
+
+		animation: bounceOutDown; /* referring directly to the animation's @keyframe declaration */
+		animation-duration: 3s; /* don't forget to set a duration! */
+	}
+	.animate__animated.animate__bounce {
+		--animate-duration: 2s;
+	}
+
+	:root {
+		--animate-duration: 800ms;
+		--animate-delay: 0.9s;
+	}
 	section.cover {
 		position: relative;
 		background-image: url('/src/lib/assets/cover.webp');
