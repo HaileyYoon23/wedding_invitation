@@ -5,6 +5,8 @@
 	import { _ } from 'svelte-i18n';
 	import { onMount } from 'svelte';
 	import 'animate.css';
+	import roaCat from '$lib/assets/etc/roa_pic.webp';
+	import hanaCat from '$lib/assets/etc/hana_pic.webp';
 
 	const maxSectionHeight = 900;
 	let sectionHeight = $state(maxSectionHeight);
@@ -38,8 +40,8 @@
 
 <section style:height={`${sectionHeight}px`} class="cover" class:loaded={coverLoaded}>
 	{#if imageVisible}
-		<img src="/src/lib/assets/etc/로아_사진.png" alt="로아" class="animate__animated roa_cat" />
-		<img src="/src/lib/assets/etc/한아_사진.png" alt="한아" class="animate__animated hana_cat" />
+		<img src={roaCat} alt="로아" class="animate__animated roa_cat" />
+		<img src={hanaCat} alt="한아" class="animate__animated hana_cat" />
 	{/if}
 	<div class="confetti-area">
 		<Confetti
