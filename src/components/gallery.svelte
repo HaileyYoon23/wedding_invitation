@@ -38,7 +38,33 @@
 			gallery: '#gallery',
 			children: 'a',
 			showHideAnimationType: 'fade',
-			pswpModule: PhotoSwipe
+			pswpModule: PhotoSwipe,
+			// 모바일에서 스크롤 관련 문제 방지
+			allowPanToNext: false,
+			closeOnVerticalDrag: false,
+			// 터치 이벤트 최적화
+			pinchToClose: false,
+			// 스크롤 관련 설정
+			wheelToZoom: false
+		});
+
+		// 라이트박스가 열릴 때 body 스크롤 방지
+		lightbox.on('beforeOpen', () => {
+			document.body.classList.add('pswp-open');
+			// 현재 스크롤 위치 저장
+			const scrollY = window.scrollY;
+			document.body.style.top = `-${scrollY}px`;
+		});
+
+		// 라이트박스가 닫힐 때 body 스크롤 복원
+		lightbox.on('destroy', () => {
+			document.body.classList.remove('pswp-open');
+			// 저장된 스크롤 위치로 복원
+			const scrollY = document.body.style.top;
+			document.body.style.top = '';
+			if (scrollY) {
+				window.scrollTo(0, parseInt(scrollY || '0') * -1);
+			}
 		});
 
 		lightbox.init();
@@ -207,6 +233,9 @@
 	section.gallery {
 		padding: 4.5em 2em 2em 2em;
 		background-color: $white;
+		// 모바일에서 overscroll 방지
+		overscroll-behavior: contain;
+		-webkit-overflow-scrolling: touch;
 	}
 
 	.header {
