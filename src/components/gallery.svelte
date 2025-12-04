@@ -38,7 +38,12 @@
 			gallery: '#gallery',
 			children: 'a',
 			showHideAnimationType: 'fade',
-			pswpModule: PhotoSwipe
+			pswpModule: PhotoSwipe,
+		});
+
+		// 기본 링크 동작을 방지하기 위한 이벤트 리스너 추가
+		lightbox.on('beforeOpen', () => {
+			// PhotoSwipe가 열리기 전에 기본 동작 방지
 		});
 
 		lightbox.init();
@@ -196,7 +201,6 @@
 				class="slide"
 				data-pswp-width={photo.width}
 				data-pswp-height={photo.height}
-				target="_blank"
 			>
 				<img class="thumbnail" src={photo.src} alt="" />
 			</a>
