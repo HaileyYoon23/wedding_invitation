@@ -110,27 +110,3 @@ section.contact {
 	max-width: $content-max-width;
 	margin: auto;
 }
-
-// PhotoSwipe 관련 스타일 - 모바일 스크롤 문제 방지
-.pswp {
-	// pull-to-refresh 방지
-	overscroll-behavior: none;
-	-webkit-overflow-scrolling: auto;
-	
-	// 터치 액션 제한
-	touch-action: pan-x pan-y;
-}
-
-.pswp__container {
-	// 컨테이너에서도 overscroll 방지
-	overscroll-behavior: contain;
-}
-
-// 라이트박스가 열려있을 때 body 스크롤 방지
-body.pswp-open {
-	overflow: hidden !important;
-	touch-action: none !important;
-	// iOS Safari에서 bounce 효과 방지
-	position: fixed;
-	width: 100%;
-}
