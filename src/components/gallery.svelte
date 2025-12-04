@@ -38,7 +38,31 @@
 			gallery: '#gallery',
 			children: 'a',
 			showHideAnimationType: 'fade',
-			pswpModule: PhotoSwipe
+			pswpModule: PhotoSwipe,
+			// 페이지 스크롤 위치 유지를 위한 설정
+			returnFocus: false,
+			trapFocus: false,
+			closeOnVerticalDrag: true,
+			// 모달 닫기 시 페이지 새로고침 방지
+			preloadFirstSlide: false
+		});
+
+		// 모달 닫기 이벤트 핸들링
+		lightbox.on('close', () => {
+			// 페이지 새로고침 방지 및 스크롤 위치 유지
+			setTimeout(() => {
+				document.body.style.overflow = '';
+			}, 100);
+		});
+
+		// 모달 열기 이벤트 핸들링
+		lightbox.on('uiRegister', () => {
+			// 스크롤 위치 저장
+			const scrollPosition = window.pageYOffset;
+			lightbox.on('destroy', () => {
+				// 원래 스크롤 위치로 복원
+				window.scrollTo(0, scrollPosition);
+			});
 		});
 
 		lightbox.init();
@@ -196,7 +220,6 @@
 				class="slide"
 				data-pswp-width={photo.width}
 				data-pswp-height={photo.height}
-				target="_blank"
 			>
 				<img class="thumbnail" src={photo.src} alt="" />
 			</a>
