@@ -6,11 +6,24 @@
 	import photo5 from '$lib/assets/gallery/5.webp';
 	import photo6 from '$lib/assets/gallery/6.webp';
 	import photo7 from '$lib/assets/gallery/7.webp';
-	import photo8 from '$lib/assets/gallery/8.webp';
-	import photo9 from '$lib/assets/gallery/9.webp';
-	import photo10 from '$lib/assets/gallery/10.webp';
-	import photo11 from '$lib/assets/gallery/11.webp';
-	import photo12 from '$lib/assets/gallery/12.webp';
+	import photo13 from '$lib/assets/gallery/13.webp';
+	import photo14 from '$lib/assets/gallery/14.webp';
+	import photo15 from '$lib/assets/gallery/15.webp';
+	import photo16 from '$lib/assets/gallery/16.webp';
+	import photo17 from '$lib/assets/gallery/17.webp';
+	import photo18 from '$lib/assets/gallery/18.webp';
+	import photo19 from '$lib/assets/gallery/19.webp';
+	import photo20 from '$lib/assets/gallery/20.webp';
+	import photo21 from '$lib/assets/gallery/21.webp';
+	import photo22 from '$lib/assets/gallery/22.webp';
+	import photo23 from '$lib/assets/gallery/23.webp';
+	import photo24 from '$lib/assets/gallery/24.webp';
+	import photo25 from '$lib/assets/gallery/25.webp';
+	import photo26 from '$lib/assets/gallery/26.webp';
+	import photo27 from '$lib/assets/gallery/27.webp';
+	import photo28 from '$lib/assets/gallery/28.webp';
+	import photo29 from '$lib/assets/gallery/29.webp';
+	import photo30 from '$lib/assets/gallery/30.webp';
 
 	import PhotoSwipeLightBox from 'photoswipe/lightbox';
 	import PhotoSwipe from 'photoswipe';
@@ -38,6 +51,11 @@
 			src: photo1,
 			width: w,
 			height: h
+		},
+		{
+			src: photo24,
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo2,
@@ -70,29 +88,90 @@
 			height: h
 		},
 		{
-			src: photo8,
-			width: 3024,
-			height: 4032
+			src: photo13,
+			width: 1866,
+			height: 2800
 		},
 		{
-			src: photo9,
-			width: 4284,
-			height: 4284
+			src: photo14,
+			width: 1866,
+			height: 2800
 		},
 		{
-			src: photo10,
-			width: 4032,
-			height: 3024
+			src: photo15,
+			width: 1866,
+			height: 2800
 		},
 		{
-			src: photo11,
-			width: 3024,
-			height: 3024
+			src: photo16,
+			width: 1866,
+			height: 2800
 		},
 		{
-			src: photo12,
-			width: 4284,
-			height: 5712
+			src: photo17,
+			width: 1866,
+			height: 2800
+		},
+		{
+			src: photo18,
+			width: 1866,
+			height: 2800
+		},
+		
+		{
+			src: photo19,
+			width: 1866,
+			height: 2800
+		},
+		{
+			src: photo20,
+			width: 2100,
+			height: 2800
+		},
+		{
+			src: photo21,
+			width: 1866,
+			height: 2800
+		},
+		{
+			src: photo22,
+			width: 1866,
+			height: 2800
+		},
+		{
+			src: photo23,
+			width: 4000,
+			height: 6000
+		},
+		{
+			src: photo25,
+			width: 5570,
+			height: 4557
+		},
+		{
+			src: photo26,
+			width: 4974,
+			height: 3880
+		},
+		{
+			src: photo27,
+			width: 4825,
+			height: 4256
+		},
+		{
+			src: photo28,
+			width: 4672,
+			height: 7008
+		},
+		{
+			src: photo29,
+			width: 4000,
+			height: 6000
+		},
+		{
+			src: photo30,
+			width: 4000,
+			height: 6000
 		}
 	];
 </script>

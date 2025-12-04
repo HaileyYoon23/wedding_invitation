@@ -2,16 +2,29 @@
 	import { localeStore } from '../i18n.svelte';
 	import { browser } from '$app/environment';
 	import { _ } from 'svelte-i18n';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { Github } from '@lucide/svelte';
 	import finDeco from '$lib/assets/ring.png';
 
 	const maxSectionHeight = 450;
 	let sectionHeight = $state(maxSectionHeight);
 	let coverLoaded = $state(false);
+	let showFamilyImage = $state(false);
 
 	function setSectionHeight() {
 		sectionHeight = window.innerHeight < maxSectionHeight ? window.innerHeight : maxSectionHeight;
+	}
+
+	function handleScroll() {
+		if (!browser) return;
+		
+		const scrollPosition = window.scrollY;
+		const documentHeight = document.documentElement.scrollHeight;
+		const windowHeight = window.innerHeight;
+		const distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
+		
+		// 맨 아래에서 200px 근처에 있는지 확인
+		showFamilyImage = distanceFromBottom <= 100;
 	}
 
 	if (browser && window.matchMedia('(max-width: 1024px)')) {
@@ -27,11 +40,23 @@
 				}, 50);
 			});
 		});
+
+		// 스크롤 이벤트 리스너 추가
+		if (browser) {
+			window.addEventListener('scroll', handleScroll, { passive: true });
+			// 초기 스크롤 위치 확인
+			handleScroll();
+		}
+	});
+
+	onDestroy(() => {
+		if (browser) {
+			window.removeEventListener('scroll', handleScroll);
+		}
 	});
 </script>
 
-<section style:height={`${sectionHeight}px`} class="cover" class:loaded={coverLoaded}>
-	<img class="fin-deco" src={finDeco} alt="" />
+<section style:height={`${sectionHeight}px`} class="cover" class:loaded={coverLoaded} class:family-image={showFamilyImage}>
 </section>
 
 <section class="fin">
@@ -50,71 +75,18 @@
 		background-size: contain; /* Change from 'cover' to 'contain' to make it smaller */
 		/* Or use a specific size like: background-size: 80%; */
 		opacity: 0;
-		transition: opacity 1.3s ease-in-out;
+		transition: opacity 1.3s ease-in-out, background-image 0.5s ease-in-out;
 		/* Android WebKit 브라우저를 위한 하드웨어 가속 */
 		-webkit-transform: translateZ(0);
 		transform: translateZ(0);
-		will-change: opacity;
+		will-change: opacity, background-image;
 
 		&.loaded {
 			opacity: 1;
 		}
-	}
-	.names-kr-box {
-		position: absolute;
-		top: 3em;
-		left: 4em;
 
-		span.names {
-			color:rgb(254, 254, 254);
-			display: block;
-			font-size: 1.5rem;
-			letter-spacing: 0.8em;
-			line-height: 2;
-		}
-	}
-
-	.cover-title-container {
-		width: 100%;
-		position: absolute;
-		bottom: 1.5em;
-	}
-
-	.names-en-box {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-
-		span.names {
-			display: block;
-			color: $white;
-			word-spacing: 5px;
-			font-size: 2.2rem;
-		}
-	}
-
-	.event-date-and-place-box {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		span.event-date-and-time,
-		span.event-place {
-			display: block;
-			color: $white;
-
-			&.kr {
-				font-size: 1rem;
-			}
-
-			&.en {
-				font-size: 1.4rem;
-			}
-		}
-
-		span.event-date-and-time.kr {
-			margin-bottom: 0.4em;
+		&.family-image {
+			background-image: url('/src/lib/assets/etc/family.webp');
 		}
 	}
 
