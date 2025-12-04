@@ -130,7 +130,9 @@ section.contact {
 body.pswp-open {
 	overflow: hidden !important;
 	touch-action: none !important;
-	// iOS Safari에서 bounce 효과 방지
+	// iOS Safari에서 bounce 효과 방지 및 스크롤 위치 유지
 	position: fixed;
 	width: 100%;
+	left: 0;
+	right: 0;
 }
