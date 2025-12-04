@@ -4,8 +4,7 @@
 	import { _ } from 'svelte-i18n';
 	import { onMount, onDestroy } from 'svelte';
 	import { Github } from '@lucide/svelte';
-	import finDeco from '$lib/assets/ring.png';
-	import familyImage from '$lib/assets/etc/family.jpg';
+	import familyImage from '$lib/assets/etc/family.png';
 
 	const maxSectionHeight = 450;
 	let sectionHeight = $state(maxSectionHeight);
@@ -26,7 +25,7 @@
 		const distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
 		
 		// 맨 아래에서 200px 근처에 있는지 확인
-		showFamilyImage = distanceFromBottom <= 180;
+		showFamilyImage = distanceFromBottom <= 140;
 	}
 
 	if (browser && window.matchMedia('(max-width: 1024px)')) {
@@ -65,18 +64,18 @@
 	});
 </script>
 
-<section style:height={`${sectionHeight}px`} class="cover" class:loaded={coverLoaded} class:family-image={showFamilyImage}>
+<section style:height={`${sectionHeight}px`} class="fin-cover" class:loaded={coverLoaded} class:family-image={showFamilyImage}>
 </section>
 
 <section class="fin">
+	<div style:height="50px;"></div>
 	<p class="signature en">made by YoonSeo ♡</p>
 	<a class="github-icon" href="https://github.com/HaileyYoon23" target="_blank"
 		><Github size="1.1em" strokeWidth={1} /></a>
-	
 </section>
 
 <style lang="scss">
-	section.cover {
+	section.fin-cover {
 		position: relative;
 		background-image: url('/src/lib/assets/draw.webp');
 		background-repeat: no-repeat;
@@ -98,8 +97,11 @@
 		}
 
 		&.family-image {
-			background-image: url('/src/lib/assets/etc/family.jpg');
+			background-image: url('/src/lib/assets/etc/family.png');
 		}
+	}
+	section.fin {
+		height: 150px;
 	}
 
 	section.fin {
