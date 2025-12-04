@@ -11,7 +11,7 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: undefined,
+			fallback: 'index.html', // SPA fallback for GitHub Pages
 			precompress: false,
 			strict: true
 		}),
