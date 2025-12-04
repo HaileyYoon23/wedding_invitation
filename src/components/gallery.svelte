@@ -34,8 +34,6 @@
 	import { _ } from 'svelte-i18n';
 
 	onMount(() => {
-		let savedScrollY = 0;
-
 		const lightbox = new PhotoSwipeLightBox({
 			gallery: '#gallery',
 			children: 'a',
@@ -50,22 +48,23 @@
 			wheelToZoom: false
 		});
 
-		// 라이트박스가 열릴 때 body 스크롤 방지 및 위치 저장
+		// 라이트박스가 열릴 때 body 스크롤 방지
 		lightbox.on('beforeOpen', () => {
-			// 현재 스크롤 위치 저장
-			savedScrollY = window.scrollY;
 			document.body.classList.add('pswp-open');
-			document.body.style.top = `-${savedScrollY}px`;
+			// 현재 스크롤 위치 저장
+			const scrollY = window.scrollY;
+			document.body.style.top = `-${scrollY}px`;
 		});
 
 		// 라이트박스가 닫힐 때 body 스크롤 복원
-		lightbox.on('close', () => {
+		lightbox.on('destroy', () => {
 			document.body.classList.remove('pswp-open');
+			// 저장된 스크롤 위치로 복원
+			const scrollY = document.body.style.top;
 			document.body.style.top = '';
-			// 저장된 스크롤 위치로 복원 (부드럽게)
-			requestAnimationFrame(() => {
-				window.scrollTo(0, savedScrollY);
-			});
+			if (scrollY) {
+				window.scrollTo(0, parseInt(scrollY || '0') * -1);
+			}
 		});
 
 		lightbox.init();
