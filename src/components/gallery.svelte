@@ -66,118 +66,150 @@
 
 		// 현재 스크롤 위치 저장
 		let savedScrollPosition = 0;
+		
+		// PhotoSwipe 초기화 (DOMContentLoaded 보장)
+		const initPhotoSwipe = () => {
+			const lightbox = new PhotoSwipeLightBox({
+				gallery: '#gallery',
+				children: 'a',
+				showHideAnimationType: 'fade',
+				pswpModule: PhotoSwipe,
+				// GitHub Pages 호환성을 위한 핵심 설정
+				returnFocus: false,
+				trapFocus: false,
+				closeOnVerticalDrag: true,
+				preloadFirstSlide: true,
+				bgOpacity: 0.8,
+				spacing: 0.1,
+				allowPanToNext: true,
+				loop: true,
+				escKey: true,
+				arrowKeys: true,
+				clickToCloseNonZoomable: true
+			});
 
-		const lightbox = new PhotoSwipeLightBox({
-			gallery: '#gallery',
-			children: 'a',
-			showHideAnimationType: 'fade',
-			pswpModule: PhotoSwipe,
-			// GitHub Pages SPA 호환성을 위한 설정
-			returnFocus: false,
-			trapFocus: false,
-			closeOnVerticalDrag: true,
-			// 이미지 미리 로딩 설정
-			preloadFirstSlide: true,
-			// 더 나은 로딩 경험을 위한 설정
-			bgOpacity: 0.8,
-			spacing: 0.1,
-			allowPanToNext: true,
-			loop: true,
-			// 추가 SPA 호환성 설정
-			escKey: true,
-			arrowKeys: true,
-			clickToCloseNonZoomable: true
-		});
+			// PhotoSwipe 초기화 후 링크 클릭 이벤트 재정의
+			lightbox.on('uiRegister', () => {
+				// 갤러리 링크들에 안전한 클릭 핸들러 추가
+				const galleryElement = document.getElementById('gallery');
+				if (galleryElement) {
+					const galleryLinks = galleryElement.querySelectorAll('a');
+					galleryLinks.forEach((link, index) => {
+						// 기존 이벤트 리스너 제거 후 새로 추가
+						const newLink = link.cloneNode(true) as HTMLElement;
+						link.parentNode?.replaceChild(newLink, link);
+						
+						// PhotoSwipe 열기 이벤트 추가
+						newLink.addEventListener('click', (e) => {
+							e.preventDefault(); // 기본 링크 동작 차단
+							e.stopPropagation();
+							
+							// PhotoSwipe 수동 열기
+							lightbox.loadAndOpen(index);
+						});
+					});
+				}
+			});
 
-		// PhotoSwipe 열기 전 이벤트
-		lightbox.on('beforeOpen', () => {
-			// 현재 스크롤 위치 저장
-			savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-			// body 스크롤 방지
-			document.body.style.overflow = 'hidden';
-			document.body.style.position = 'fixed';
-			document.body.style.top = `-${savedScrollPosition}px`;
-			document.body.style.width = '100%';
-		});
+			// 전역 히스토리 차단 설정
+			let originalPushState: typeof history.pushState;
+			let originalReplaceState: typeof history.replaceState;
+			let originalOnPopState: typeof window.onpopstate;
+			let historyBlocked = false;
 
-		// 브라우저 히스토리 변경 방지를 위한 전역 설정
-		let originalPushState: typeof history.pushState;
-		let originalReplaceState: typeof history.replaceState;
-		let historyBlocked = false;
-
-		// PhotoSwipe 인스턴스 생성 후 히스토리 관리 비활성화
-		lightbox.on('uiRegister', () => {
-			if (!historyBlocked) {
-				// 브라우저 히스토리 변경 방지
-				originalPushState = history.pushState;
-				originalReplaceState = history.replaceState;
+			// PhotoSwipe 열기 전 완전 차단
+			lightbox.on('beforeOpen', () => {
+				// 스크롤 위치 저장
+				savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 				
-				// PhotoSwipe가 활성화된 동안 히스토리 변경 차단
-				history.pushState = function() {
-					// PhotoSwipe 관련 히스토리 변경 무시
-					return;
-				};
-				history.replaceState = function() {
-					// PhotoSwipe 관련 히스토리 변경 무시
-					return;
-				};
+				// body 고정
+				document.body.style.overflow = 'hidden';
+				document.body.style.position = 'fixed';
+				document.body.style.top = `-${savedScrollPosition}px`;
+				document.body.style.width = '100%';
+				document.body.style.height = '100%';
+
+				// 히스토리 API 완전 차단
+				if (!historyBlocked) {
+					originalPushState = history.pushState;
+					originalReplaceState = history.replaceState;
+					originalOnPopState = window.onpopstate;
+
+					// 히스토리 변경 완전 차단
+					history.pushState = () => {};
+					history.replaceState = () => {};
+					window.onpopstate = (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						return false;
+					};
+
+					historyBlocked = true;
+				}
+			});
+
+			// PhotoSwipe 닫기 후 복원
+			lightbox.on('close', () => {
+				// 히스토리 API 복원
+				if (historyBlocked && originalPushState && originalReplaceState) {
+					history.pushState = originalPushState;
+					history.replaceState = originalReplaceState;
+					window.onpopstate = originalOnPopState;
+					historyBlocked = false;
+				}
+
+				// body 스타일 복원
+				document.body.style.overflow = '';
+				document.body.style.position = '';
+				document.body.style.top = '';
+				document.body.style.width = '';
+				document.body.style.height = '';
 				
-				historyBlocked = true;
-			}
-		});
+				// 스크롤 위치 복원
+				requestAnimationFrame(() => {
+					window.scrollTo(0, savedScrollPosition);
+				});
+			});
 
-		// PhotoSwipe 닫기 후 이벤트
-		lightbox.on('close', () => {
-			// body 스타일 복원
-			document.body.style.overflow = '';
-			document.body.style.position = '';
-			document.body.style.top = '';
-			document.body.style.width = '';
-			
-			// 히스토리 함수 복원
-			if (historyBlocked && originalPushState && originalReplaceState) {
-				history.pushState = originalPushState;
-				history.replaceState = originalReplaceState;
-				historyBlocked = false;
-			}
-			
-			// 스크롤 위치 복원 (약간의 지연으로 안정성 확보)
-			setTimeout(() => {
-				window.scrollTo(0, savedScrollPosition);
-			}, 50);
-		});
+			// 에러 처리 및 안전장치
+			lightbox.on('destroy', () => {
+				if (historyBlocked && originalPushState && originalReplaceState) {
+					history.pushState = originalPushState;
+					history.replaceState = originalReplaceState;
+					window.onpopstate = originalOnPopState;
+					historyBlocked = false;
+				}
+			});
 
-		// PhotoSwipe 초기화 완료 이벤트
-		lightbox.on('firstUpdate', () => {
-			console.log('PhotoSwipe initialized for GitHub Pages');
-		});
+			// PhotoSwipe 초기화
+			lightbox.init();
 
-		// 에러 핸들링
-		lightbox.on('loadComplete', (e) => {
-			if (e.slide && e.slide.data && e.slide.data.element) {
-				console.log('Image loaded successfully');
-			}
-		});
-
-		lightbox.init();
-
-		// 컴포넌트 언마운트 시 정리
-		return () => {
-			if (lightbox) {
-				lightbox.destroy();
-			}
-			// 히스토리 함수 복원 (안전장치)
-			if (historyBlocked && originalPushState && originalReplaceState) {
-				history.pushState = originalPushState;
-				history.replaceState = originalReplaceState;
-				historyBlocked = false;
-			}
-			// body 스타일 정리 (안전장치)
-			document.body.style.overflow = '';
-			document.body.style.position = '';
-			document.body.style.top = '';
-			document.body.style.width = '';
+			// 컴포넌트 언마운트 시 정리
+			return () => {
+				if (lightbox) {
+					lightbox.destroy();
+				}
+				// 안전장치: 모든 변경사항 복원
+				if (historyBlocked && originalPushState && originalReplaceState) {
+					history.pushState = originalPushState;
+					history.replaceState = originalReplaceState;
+					window.onpopstate = originalOnPopState;
+				}
+				document.body.style.overflow = '';
+				document.body.style.position = '';
+				document.body.style.top = '';
+				document.body.style.width = '';
+				document.body.style.height = '';
+			};
 		};
+
+		// DOM이 완전히 로드된 후 초기화
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initPhotoSwipe);
+		} else {
+			// 이미 로드된 경우 즉시 실행
+			setTimeout(initPhotoSwipe, 0);
+		}
 	});
 
 	const photos = [
@@ -334,14 +366,15 @@
 		{/if}
 	</div>
 	<div id="gallery" class:loading={!allImagesLoaded}>
-		{#each photos as photo}
+		{#each photos as photo, index}
 			<a
 				href={photo.src}
 				class="slide"
 				data-pswp-width={photo.width}
 				data-pswp-height={photo.height}
+				aria-label="갤러리 이미지 {index + 1} 보기"
 			>
-				<img class="thumbnail" src={photo.src} alt="" loading="eager" />
+				<img class="thumbnail" src={photo.src} alt="갤러리 이미지 {index + 1}" loading="eager" />
 			</a>
 		{/each}
 	</div>
@@ -399,6 +432,16 @@
 
 	.slide {
 		grid-row: span 2;
+		display: block;
+		width: 100%;
+		height: 100%;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+	.slide:focus {
+		outline: 2px solid #007acc;
+		outline-offset: 2px;
 	}
 
 	.loading-indicator {
