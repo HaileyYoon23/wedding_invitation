@@ -34,6 +34,19 @@
 	import { _ } from 'svelte-i18n';
 
 	onMount(() => {
+		const gallery = document.querySelector('#gallery');
+
+		// 🔒 페이지 새로고침 방지: PhotoSwipe 로딩 전 a 태그 클릭 보호
+		if (gallery) {
+			const anchors = gallery.querySelectorAll('a');
+			anchors.forEach((a) => {
+				a.addEventListener('click', (e) => {
+					e.preventDefault(); // 클릭 → 절대 페이지 이동 금지
+				});
+			});
+		}
+
+		// PhotoSwipe 초기화
 		const lightbox = new PhotoSwipeLightBox({
 			gallery: '#gallery',
 			children: 'a',
@@ -45,142 +58,32 @@
 	});
 
 	const photos = [
-		{
-			src: photo24,
-			width: 4000,
-			height: 6000
-		},
-		{
-			src: photo3,
-			width: 4000,
-			height: 6000
-		},
-		{
-			src: photo1,
-			width: 4000,
-			height: 6000
-		},
-//////////////////////////////////////////////////////////////
-		{
-			src: photo2,
-			width: 4000,
-			height: 6000
-		},
-		{
-			src: photo4,
-			width: 4000,
-			height: 6000
-		},
-		{
-			src: photo5,
-			width: 4000,
-			height: 6000
-		},
-//////////////////////////////////////////////////////////////
-		{
-			src: photo6,
-			width: 4000,
-			height: 6000
-		},
-		{
-			src: photo7,
-			width: 4000,
-			height: 6000
-		},
-		{
-			src: photo13,
-			width: 1866,
-			height: 2800
-		},
-//////////////////////////////////////////////////////////////
-		{
-			src: photo15,
-			width: 1866,
-			height: 2800
-		},
-		{
-			src: photo16,
-			width: 1866,
-			height: 2800
-		},
-		{	
-			src: photo17,
-			width: 1866,
-			height: 2800
-		},
-//////////////////////////////////////////////////////////////
-	{
-			src: photo19,
-			width: 1866,
-			height: 2800
-		},
-		{
-			src: photo20,
-			width: 2100,
-			height: 2800
-		},
-		{
-			src: photo21,
-			width: 1866,
-			height: 2800
-		},
-//////////////////////////////////////////////////////////////
-		{
-			src: photo14,
-			width: 1866,
-			height: 2800
-		},		
-		{
-			src: photo18,
-			width: 1866,
-			height: 2800
-		},
-		{
-			src: photo8,
-			width: 4000,
-			height: 6000
-		},
-//////////////////////////////////////////////////////////////
-		{
-			src: photo22,
-			width: 1866,
-			height: 2800
-		},
-		{
-			src: photo23,
-			width: 4000,
-			height: 6000
-		},
-		{
-			src: photo25,
-			width: 5570,
-			height: 4557
-		},
-		{
-			src: photo26,
-			width: 4974,
-			height: 3880
-		},
-		{
-			src: photo27,
-			width: 4825,
-			height: 4256
-		},
-		{
-			src: photo28,
-			width: 4672,
-			height: 7008
-		},
-		{
-			src: photo29,
-			width: 4000,
-			height: 6000
-		},
-		{
-			src: photo30,
-			width: 4000,
-			height: 6000
-		}
+		{ src: photo24, width: 4000, height: 6000 },
+		{ src: photo3, width: 4000, height: 6000 },
+		{ src: photo1, width: 4000, height: 6000 },
+		{ src: photo2, width: 4000, height: 6000 },
+		{ src: photo4, width: 4000, height: 6000 },
+		{ src: photo5, width: 4000, height: 6000 },
+		{ src: photo6, width: 4000, height: 6000 },
+		{ src: photo7, width: 4000, height: 6000 },
+		{ src: photo13, width: 1866, height: 2800 },
+		{ src: photo15, width: 1866, height: 2800 },
+		{ src: photo16, width: 1866, height: 2800 },
+		{ src: photo17, width: 1866, height: 2800 },
+		{ src: photo19, width: 1866, height: 2800 },
+		{ src: photo20, width: 2100, height: 2800 },
+		{ src: photo21, width: 1866, height: 2800 },
+		{ src: photo14, width: 1866, height: 2800 },
+		{ src: photo18, width: 1866, height: 2800 },
+		{ src: photo8, width: 4000, height: 6000 },
+		{ src: photo22, width: 1866, height: 2800 },
+		{ src: photo23, width: 4000, height: 6000 },
+		{ src: photo25, width: 5570, height: 4557 },
+		{ src: photo26, width: 4974, height: 3880 },
+		{ src: photo27, width: 4825, height: 4256 },
+		{ src: photo28, width: 4672, height: 7008 },
+		{ src: photo29, width: 4000, height: 6000 },
+		{ src: photo30, width: 4000, height: 6000 }
 	];
 </script>
 
@@ -189,6 +92,7 @@
 		<h2 class="title {localeStore.locale}">{$_('gallery.title')}</h2>
 		<p class="sub-title {localeStore.locale}">{$_('gallery.sub_title')}</p>
 	</div>
+
 	<div id="gallery">
 		{#each photos as photo}
 			<a
@@ -196,7 +100,6 @@
 				class="slide"
 				data-pswp-width={photo.width}
 				data-pswp-height={photo.height}
-				target="_blank"
 			>
 				<img class="thumbnail" src={photo.src} alt="" />
 			</a>
@@ -229,6 +132,7 @@
 
 	p.sub-title {
 		text-align: center;
+
 		&.kr {
 			margin-top: 0.9em;
 			font-size: 0.9rem;
