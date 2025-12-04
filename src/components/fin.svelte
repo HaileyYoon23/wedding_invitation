@@ -5,11 +5,13 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { Github } from '@lucide/svelte';
 	import finDeco from '$lib/assets/ring.png';
+	import familyImage from '$lib/assets/etc/family.jpg';
 
 	const maxSectionHeight = 450;
 	let sectionHeight = $state(maxSectionHeight);
 	let coverLoaded = $state(false);
 	let showFamilyImage = $state(false);
+	let familyImagePreloaded = $state(false);
 
 	function setSectionHeight() {
 		sectionHeight = window.innerHeight < maxSectionHeight ? window.innerHeight : maxSectionHeight;
@@ -32,6 +34,13 @@
 	}
 
 	onMount(() => {
+		// family 이미지 미리 로드
+		const preloadImage = new Image();
+		preloadImage.onload = () => {
+			familyImagePreloaded = true;
+		};
+		preloadImage.src = familyImage;
+
 		// Android에서 렌더링을 강제로 기다린 후 페이드인 시작
 		requestAnimationFrame(() => {
 			requestAnimationFrame(() => {
@@ -75,11 +84,14 @@
 		background-size: contain; /* Change from 'cover' to 'contain' to make it smaller */
 		/* Or use a specific size like: background-size: 80%; */
 		opacity: 0;
-		transition: opacity 1.3s ease-in-out, background-image 0.5s ease-in-out;
+		transition: opacity 1.3s ease-in-out, background-image 0.3s ease-in-out;
 		/* Android WebKit 브라우저를 위한 하드웨어 가속 */
 		-webkit-transform: translateZ(0);
 		transform: translateZ(0);
 		will-change: opacity, background-image;
+		/* 이미지 로딩 최적화 */
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
 
 		&.loaded {
 			opacity: 1;
