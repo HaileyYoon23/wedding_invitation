@@ -33,7 +33,37 @@
 	import { localeStore } from '../i18n.svelte';
 	import { _ } from 'svelte-i18n';
 
+	let imagesLoaded = 0;
+	let totalImages = 0;
+	let allImagesLoaded = false;
+
+	// 이미지 미리 로딩 함수
+	function preloadImages() {
+		totalImages = photos.length;
+		imagesLoaded = 0;
+		
+		photos.forEach((photo, index) => {
+			const img = new Image();
+			img.onload = () => {
+				imagesLoaded++;
+				if (imagesLoaded === totalImages) {
+					allImagesLoaded = true;
+				}
+			};
+			img.onerror = () => {
+				imagesLoaded++;
+				if (imagesLoaded === totalImages) {
+					allImagesLoaded = true;
+				}
+			};
+			img.src = photo.src;
+		});
+	}
+
 	onMount(() => {
+		// 이미지 미리 로딩 시작
+		preloadImages();
+
 		const lightbox = new PhotoSwipeLightBox({
 			gallery: '#gallery',
 			children: 'a',
@@ -43,8 +73,13 @@
 			returnFocus: false,
 			trapFocus: false,
 			closeOnVerticalDrag: true,
-			// 모달 닫기 시 페이지 새로고침 방지
-			preloadFirstSlide: false
+			// 이미지 미리 로딩 설정
+			preloadFirstSlide: true,
+			// 더 나은 로딩 경험을 위한 설정
+			bgOpacity: 0.8,
+			spacing: 0.1,
+			allowPanToNext: true,
+			loop: true
 		});
 
 		// 모달 닫기 이벤트 핸들링
@@ -63,6 +98,12 @@
 				// 원래 스크롤 위치로 복원
 				window.scrollTo(0, scrollPosition);
 			});
+		});
+
+		// PhotoSwipe 인스턴스가 생성된 후 추가 설정
+		lightbox.on('firstUpdate', () => {
+			// PhotoSwipe가 초기화된 후 실행되는 코드
+			console.log('PhotoSwipe initialized with preloaded images');
 		});
 
 		lightbox.init();
@@ -212,8 +253,16 @@
 	<div class="header">
 		<h2 class="title {localeStore.locale}">{$_('gallery.title')}</h2>
 		<p class="sub-title {localeStore.locale}">{$_('gallery.sub_title')}</p>
+		{#if !allImagesLoaded}
+			<div class="loading-indicator">
+				<div class="loading-bar">
+					<div class="loading-progress" style="width: {(imagesLoaded / totalImages) * 100}%"></div>
+				</div>
+				<p class="loading-text">이미지 로딩 중... ({imagesLoaded}/{totalImages})</p>
+			</div>
+		{/if}
 	</div>
-	<div id="gallery">
+	<div id="gallery" class:loading={!allImagesLoaded}>
 		{#each photos as photo}
 			<a
 				href={photo.src}
@@ -221,7 +270,7 @@
 				data-pswp-width={photo.width}
 				data-pswp-height={photo.height}
 			>
-				<img class="thumbnail" src={photo.src} alt="" />
+				<img class="thumbnail" src={photo.src} alt="" loading="eager" />
 			</a>
 		{/each}
 	</div>
@@ -279,5 +328,42 @@
 
 	.slide {
 		grid-row: span 2;
+	}
+
+	.loading-indicator {
+		text-align: center;
+		margin-top: 1em;
+		padding: 1em;
+	}
+
+	.loading-bar {
+		width: 200px;
+		height: 4px;
+		background-color: #f0f0f0;
+		border-radius: 2px;
+		margin: 0 auto 0.5em;
+		overflow: hidden;
+	}
+
+	.loading-progress {
+		height: 100%;
+		background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+		border-radius: 2px;
+		transition: width 0.3s ease;
+	}
+
+	.loading-text {
+		font-size: 0.9rem;
+		color: #666;
+		margin: 0;
+	}
+
+	#gallery.loading {
+		opacity: 0.7;
+		pointer-events: none;
+	}
+
+	#gallery:not(.loading) {
+		transition: opacity 0.5s ease;
 	}
 </style>
