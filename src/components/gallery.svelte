@@ -196,7 +196,6 @@
 				class="slide"
 				data-pswp-width={photo.width}
 				data-pswp-height={photo.height}
-				target="_blank"
 			>
 				<img class="thumbnail" src={photo.src} alt="" />
 			</a>
