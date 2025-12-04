@@ -6,7 +6,7 @@
 	import thursdayCol from '$lib/assets/calendar/calendar-thursday.svg';
 	import fridayCol from '$lib/assets/calendar/calendar-friday.svg';
 	import saturdayCol from '$lib/assets/calendar/calendar-saturday.svg';
-	import calendarDeco from '$lib/assets/calendar-deco.svg';
+	import calendarDeco from '$lib/assets/calendar-deco.png';
 
 	function addToGoogleCalendar() {
 		// 2026년 1월 31일 오후 3시 20분 (한국시간)
@@ -74,7 +74,7 @@
 			transition: transform 0.2s ease;
 
 			&:hover {
-				transform: scale(1.05);
+				transform: scale(1.15);
 			}
 
 			&:active {

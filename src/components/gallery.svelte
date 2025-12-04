@@ -1,30 +1,30 @@
 <script lang="ts">
-	import photo1 from '$lib/assets/gallery/1.webp';
-	import photo2 from '$lib/assets/gallery/2.webp';
-	import photo3 from '$lib/assets/gallery/3.webp';
-	import photo4 from '$lib/assets/gallery/4.webp';
-	import photo5 from '$lib/assets/gallery/5.webp';
-	import photo6 from '$lib/assets/gallery/6.webp';
-	import photo7 from '$lib/assets/gallery/7.webp';
-	import photo8 from '$lib/assets/gallery/8.webp';
-	import photo13 from '$lib/assets/gallery/13.webp';
-	import photo14 from '$lib/assets/gallery/14.webp';
-	import photo15 from '$lib/assets/gallery/15.webp';
-	import photo16 from '$lib/assets/gallery/16.webp';
-	import photo17 from '$lib/assets/gallery/17.webp';
-	import photo18 from '$lib/assets/gallery/18.webp';
-	import photo19 from '$lib/assets/gallery/19.webp';
-	import photo20 from '$lib/assets/gallery/20.webp';
-	import photo21 from '$lib/assets/gallery/21.webp';
-	import photo22 from '$lib/assets/gallery/22.webp';
-	import photo23 from '$lib/assets/gallery/23.webp';
-	import photo24 from '$lib/assets/gallery/24.webp';
-	import photo25 from '$lib/assets/gallery/25.webp';
-	import photo26 from '$lib/assets/gallery/26.webp';
-	import photo27 from '$lib/assets/gallery/27.webp';
-	import photo28 from '$lib/assets/gallery/28.webp';
-	import photo29 from '$lib/assets/gallery/29.webp';
-	import photo30 from '$lib/assets/gallery/30.webp';
+	import photo1 from '$lib/assets/gallery2/1.jpg';
+	import photo2 from '$lib/assets/gallery2/2.jpg';
+	import photo3 from '$lib/assets/gallery2/3.jpg';
+	import photo4 from '$lib/assets/gallery2/4.jpg';
+	import photo5 from '$lib/assets/gallery2/5.jpg';
+	import photo6 from '$lib/assets/gallery2/6.jpg';
+	import photo7 from '$lib/assets/gallery2/7.jpg';
+	import photo8 from '$lib/assets/gallery2/8.jpg';
+	import photo13 from '$lib/assets/gallery2/13.jpg';
+	import photo14 from '$lib/assets/gallery2/14.jpg';
+	import photo15 from '$lib/assets/gallery2/15.jpg';
+	import photo16 from '$lib/assets/gallery2/16.jpg';
+	import photo17 from '$lib/assets/gallery2/17.jpg';
+	import photo18 from '$lib/assets/gallery2/18.jpg';
+	import photo19 from '$lib/assets/gallery2/19.jpg';
+	import photo20 from '$lib/assets/gallery2/20.jpg';
+	import photo21 from '$lib/assets/gallery2/21.jpg';
+	import photo22 from '$lib/assets/gallery2/22.jpg';
+	import photo23 from '$lib/assets/gallery2/23.jpg';
+	import photo24 from '$lib/assets/gallery2/24.jpg';
+	import photo25 from '$lib/assets/gallery2/25.jpg';
+	import photo26 from '$lib/assets/gallery2/26.jpg';
+	import photo27 from '$lib/assets/gallery2/27.jpg';
+	import photo28 from '$lib/assets/gallery2/28.jpg';
+	import photo29 from '$lib/assets/gallery2/29.jpg';
+	import photo30 from '$lib/assets/gallery2/30.jpg';
 
 	import PhotoSwipeLightBox from 'photoswipe/lightbox';
 	import PhotoSwipe from 'photoswipe';
@@ -44,49 +44,46 @@
 		lightbox.init();
 	});
 
-	const w = 2709;
-	const h = 4064;
-
 	const photos = [
 		{
 			src: photo1,
-			width: w,
-			height: h
-		},
-		{
-			src: photo24,
 			width: 4000,
 			height: 6000
 		},
 		{
+			src: photo24,
+			width: 2000,
+			height: 3000
+		},
+		{
 			src: photo2,
-			width: w,
-			height: h
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo3,
-			width: w,
-			height: h
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo4,
-			width: w,
-			height: h
+			width: 1185,
+			height: 1778
 		},
 		{
 			src: photo5,
-			width: w,
-			height: h
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo6,
-			width: w,
-			height: h
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo7,
-			width: w,
-			height: h
+			width: 1185,
+			height: 1778
 		},
 		{
 			src: photo13,
@@ -125,13 +122,13 @@
 		},
 		{
 			src: photo19,
-			width: 1866,
-			height: 2800
+			width: 933,
+			height: 1400
 		},
 		{
 			src: photo20,
-			width: 2100,
-			height: 2800
+			width: 1050,
+			height: 1400
 		},
 		{
 			src: photo21,
@@ -165,8 +162,8 @@
 		},
 		{
 			src: photo28,
-			width: 4672,
-			height: 7008
+			width: 2336,
+			height: 3504
 		},
 		{
 			src: photo29,

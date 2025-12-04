@@ -86,7 +86,7 @@
 		}
 
 		&.family-image {
-			background-image: url('/src/lib/assets/etc/family.webp');
+			background-image: url('/src/lib/assets/etc/family.jpg');
 		}
 	}
 
