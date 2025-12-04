@@ -46,17 +46,7 @@
 
 	const photos = [
 		{
-			src: photo1,
-			width: 4000,
-			height: 6000
-		},
-		{
 			src: photo24,
-			width: 2000,
-			height: 3000
-		},
-		{
-			src: photo2,
 			width: 4000,
 			height: 6000
 		},
@@ -66,15 +56,27 @@
 			height: 6000
 		},
 		{
+			src: photo1,
+			width: 4000,
+			height: 6000
+		},
+//////////////////////////////////////////////////////////////
+		{
+			src: photo2,
+			width: 4000,
+			height: 6000
+		},
+		{
 			src: photo4,
-			width: 1185,
-			height: 1778
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo5,
 			width: 4000,
 			height: 6000
 		},
+//////////////////////////////////////////////////////////////
 		{
 			src: photo6,
 			width: 4000,
@@ -82,19 +84,15 @@
 		},
 		{
 			src: photo7,
-			width: 1185,
-			height: 1778
+			width: 4000,
+			height: 6000
 		},
 		{
 			src: photo13,
 			width: 1866,
 			height: 2800
 		},
-		{
-			src: photo14,
-			width: 1866,
-			height: 2800
-		},
+//////////////////////////////////////////////////////////////
 		{
 			src: photo15,
 			width: 1866,
@@ -105,11 +103,33 @@
 			width: 1866,
 			height: 2800
 		},
-		{
+		{	
 			src: photo17,
 			width: 1866,
 			height: 2800
 		},
+//////////////////////////////////////////////////////////////
+	{
+			src: photo19,
+			width: 1866,
+			height: 2800
+		},
+		{
+			src: photo20,
+			width: 2100,
+			height: 2800
+		},
+		{
+			src: photo21,
+			width: 1866,
+			height: 2800
+		},
+//////////////////////////////////////////////////////////////
+		{
+			src: photo14,
+			width: 1866,
+			height: 2800
+		},		
 		{
 			src: photo18,
 			width: 1866,
@@ -120,21 +140,7 @@
 			width: 4000,
 			height: 6000
 		},
-		{
-			src: photo19,
-			width: 933,
-			height: 1400
-		},
-		{
-			src: photo20,
-			width: 1050,
-			height: 1400
-		},
-		{
-			src: photo21,
-			width: 1866,
-			height: 2800
-		},
+//////////////////////////////////////////////////////////////
 		{
 			src: photo22,
 			width: 1866,
@@ -162,8 +168,8 @@
 		},
 		{
 			src: photo28,
-			width: 2336,
-			height: 3504
+			width: 4672,
+			height: 7008
 		},
 		{
 			src: photo29,
