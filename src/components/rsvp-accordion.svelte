@@ -10,8 +10,6 @@
 		title: string;
 	}>;
 
-	const items_2: Item[] = [
-	];
 
 	const items: Item[] = [
 		{ id: '1', title: $_('rsvp.accordion.how_to_come') },
@@ -65,10 +63,10 @@
 	</p>
 {/snippet}
 
-<div class="accordion-root" {...accordion.root}>
+<!-- <div class="accordion-root" {...accordion.root}>
 	{@render accordionItem(howToComeItem, howToComeContent)}
 	{@render accordionItem(menuItem, menuContent)}
-</div>
+</div> -->
 
 <style lang="scss">
 	.accordion-root {
