@@ -34,7 +34,7 @@
 		// 3초 후 이미지 숨기기 (bounceOutUp 애니메이션 완료 후)
 		setTimeout(() => {
 			imageVisible = false;
-		}, 3000);
+		}, 3500);
 	});
 </script>
 
@@ -76,18 +76,19 @@
 
 <style lang="scss">
 	.roa_cat {
-		display: inline-block;
+		position: absolute;
 		margin: 0 0.5rem;
-
+		z-index: 1;
 		animation: bounceOutUp; /* referring directly to the animation's @keyframe declaration */
-		animation-duration: 3s; /* don't forget to set a duration! */
+		animation-duration: 3.5s; /* don't forget to set a duration! */
 	}
 	.hana_cat {
-		display: inline-block;
+		position: absolute;
 		margin: 0 0.5rem;
-
+		margin-top: 20rem;
+		z-index: 1;
 		animation: bounceOutDown; /* referring directly to the animation's @keyframe declaration */
-		animation-duration: 3s; /* don't forget to set a duration! */
+		animation-duration: 3.5s; /* don't forget to set a duration! */
 	}
 	.animate__animated.animate__bounce {
 		--animate-duration: 2s;

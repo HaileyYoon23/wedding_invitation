@@ -24,7 +24,7 @@
 		const distanceFromBottom = documentHeight - (scrollPosition + windowHeight);
 		
 		// 맨 아래에서 200px 근처에 있는지 확인
-		showFamilyImage = distanceFromBottom <= 100;
+		showFamilyImage = distanceFromBottom <= 180;
 	}
 
 	if (browser && window.matchMedia('(max-width: 1024px)')) {
