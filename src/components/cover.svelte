@@ -34,7 +34,7 @@
 		// 3초 후 이미지 숨기기 (bounceOutUp 애니메이션 완료 후)
 		setTimeout(() => {
 			imageVisible = false;
-		}, 3500);
+		}, 3200);
 	});
 </script>
 

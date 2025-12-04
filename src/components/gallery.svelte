@@ -6,6 +6,7 @@
 	import photo5 from '$lib/assets/gallery/5.webp';
 	import photo6 from '$lib/assets/gallery/6.webp';
 	import photo7 from '$lib/assets/gallery/7.webp';
+	import photo8 from '$lib/assets/gallery/8.webp';
 	import photo13 from '$lib/assets/gallery/13.webp';
 	import photo14 from '$lib/assets/gallery/14.webp';
 	import photo15 from '$lib/assets/gallery/15.webp';
@@ -117,7 +118,11 @@
 			width: 1866,
 			height: 2800
 		},
-		
+		{
+			src: photo8,
+			width: 4000,
+			height: 6000
+		},
 		{
 			src: photo19,
 			width: 1866,
