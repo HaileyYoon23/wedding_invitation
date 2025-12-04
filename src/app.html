@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		%sveltekit.head%
 		<meta property="og:title" content="동현♥️윤서의 결혼식에 초대합니다" />
 		<meta property="og:description" content="26년 1월 31일 오후 3시 20분, 더컨벤션 잠실, 3F 아모르홀" />
@@ -11,6 +11,50 @@
 		<meta property="og:url" content="https://kko.to/marry-ryuna/" />
 		<meta property="og:type" content="website" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+		
+		<!-- 모바일 메모리 최적화 -->
+		<meta name="format-detection" content="telephone=no">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
+		
+		<!-- 서비스 워커 등록 -->
+		<script>
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', () => {
+					navigator.serviceWorker.register('/sw.js')
+						.then((registration) => {
+							console.log('SW registered: ', registration);
+						})
+						.catch((registrationError) => {
+							console.log('SW registration failed: ', registrationError);
+						});
+				});
+			}
+			
+			// 메모리 압박 감지 및 대응
+			if ('memory' in performance) {
+				const checkMemory = () => {
+					const memory = performance.memory;
+					const usedMB = memory.usedJSHeapSize / 1024 / 1024;
+					const totalMB = memory.totalJSHeapSize / 1024 / 1024;
+					
+					// 메모리 사용량이 80% 초과 시 캐시 정리
+					if (usedMB / totalMB > 0.8) {
+						if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+							navigator.serviceWorker.controller.postMessage({
+								type: 'CLEAR_CACHE'
+							});
+						}
+					}
+				};
+				
+				// 주기적 메모리 체크 (모바일에서만)
+				if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+					setInterval(checkMemory, 30000); // 30초마다 체크
+				}
+			}
+		</script>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
