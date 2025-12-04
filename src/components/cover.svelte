@@ -76,16 +76,16 @@
 
 <style lang="scss">
 	.roa_cat {
-		display: inline-block;
+		position: absolute;
 		margin: 0 0.5rem;
-
+		z-index: 1;
 		animation: bounceOutUp; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 3s; /* don't forget to set a duration! */
 	}
 	.hana_cat {
-		display: inline-block;
-		margin: 0 0.5rem;
-
+		position: absolute;
+		margin-top: 23rem;
+		z-index: 1;
 		animation: bounceOutDown; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 3s; /* don't forget to set a duration! */
 	}
