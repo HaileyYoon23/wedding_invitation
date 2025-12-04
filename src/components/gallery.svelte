@@ -6,12 +6,64 @@
 	import { localeStore } from '../i18n.svelte';
 	import { _ } from 'svelte-i18n';
 
+	// Gallery images
+	import photo1 from '$lib/assets/gallery/1.webp';
+	import photo2 from '$lib/assets/gallery/2.webp';
+	import photo3 from '$lib/assets/gallery/3.webp';
+	import photo4 from '$lib/assets/gallery/4.webp';
+	import photo5 from '$lib/assets/gallery/5.webp';
+	import photo6 from '$lib/assets/gallery/6.webp';
+	import photo7 from '$lib/assets/gallery/7.webp';
+	import photo8 from '$lib/assets/gallery/8.webp';
+	import photo13 from '$lib/assets/gallery/13.webp';
+	import photo14 from '$lib/assets/gallery/14.webp';
+	import photo15 from '$lib/assets/gallery/15.webp';
+	import photo16 from '$lib/assets/gallery/16.webp';
+	import photo17 from '$lib/assets/gallery/17.webp';
+	import photo18 from '$lib/assets/gallery/18.webp';
+	import photo19 from '$lib/assets/gallery/19.webp';
+	import photo20 from '$lib/assets/gallery/20.webp';
+	import photo21 from '$lib/assets/gallery/21.webp';
+	import photo22 from '$lib/assets/gallery/22.webp';
+	import photo23 from '$lib/assets/gallery/23.webp';
+	import photo24 from '$lib/assets/gallery/24.webp';
+	import photo25 from '$lib/assets/gallery/25.webp';
+	import photo26 from '$lib/assets/gallery/26.webp';
+	import photo27 from '$lib/assets/gallery/27.webp';
+	import photo28 from '$lib/assets/gallery/28.webp';
+	import photo29 from '$lib/assets/gallery/29.webp';
+	import photo30 from '$lib/assets/gallery/30.webp';
+
+	// Thumbnail images
+	import thumbnail1 from '$lib/assets/gallery/thumbnail/1.webp';
+	import thumbnail2 from '$lib/assets/gallery/thumbnail/2.webp';
+	import thumbnail3 from '$lib/assets/gallery/thumbnail/3.webp';
+	import thumbnail4 from '$lib/assets/gallery/thumbnail/4.webp';
+	import thumbnail5 from '$lib/assets/gallery/thumbnail/5.webp';
+	import thumbnail6 from '$lib/assets/gallery/thumbnail/6.webp';
+	import thumbnail7 from '$lib/assets/gallery/thumbnail/7.webp';
+	import thumbnail8 from '$lib/assets/gallery/thumbnail/8.webp';
+	import thumbnail13 from '$lib/assets/gallery/thumbnail/13.webp';
+	import thumbnail14 from '$lib/assets/gallery/thumbnail/14.webp';
+	import thumbnail15 from '$lib/assets/gallery/thumbnail/15.webp';
+	import thumbnail16 from '$lib/assets/gallery/thumbnail/16.webp';
+	import thumbnail17 from '$lib/assets/gallery/thumbnail/17.webp';
+	import thumbnail18 from '$lib/assets/gallery/thumbnail/18.webp';
+	import thumbnail19 from '$lib/assets/gallery/thumbnail/19.webp';
+	import thumbnail20 from '$lib/assets/gallery/thumbnail/20.webp';
+	import thumbnail21 from '$lib/assets/gallery/thumbnail/21.webp';
+	import thumbnail22 from '$lib/assets/gallery/thumbnail/22.webp';
+	import thumbnail23 from '$lib/assets/gallery/thumbnail/23.webp';
+	import thumbnail24 from '$lib/assets/gallery/thumbnail/24.webp';
+	import thumbnail25 from '$lib/assets/gallery/thumbnail/25.webp';
+	import thumbnail26 from '$lib/assets/gallery/thumbnail/26.webp';
+	import thumbnail27 from '$lib/assets/gallery/thumbnail/27.webp';
+	import thumbnail28 from '$lib/assets/gallery/thumbnail/28.webp';
+	import thumbnail29 from '$lib/assets/gallery/thumbnail/29.webp';
+	import thumbnail30 from '$lib/assets/gallery/thumbnail/30.webp';
+
 	let lightbox: PhotoSwipeLightBox | null = null;
 	let observer: IntersectionObserver | null = null;
-
-	// 동적 이미지 로딩을 위한 함수
-	const getImagePath = (index: number) => `/src/lib/assets/gallery/${index}.webp`;
-	const thumbnailImagePath = (index: number) => `/src/lib/assets/gallery/thumbnail/${index}.webp`;
 	
 	// 썸네일용 저해상도 이미지 생성 (CSS로 처리)
 	const createThumbnailSrc = (originalSrc: string) => {
@@ -102,34 +154,34 @@
 		}
 	});
 
-	// 이미지 메타데이터 (동적 로딩용)
+	// 이미지 메타데이터 (정적 import 사용)
 	const photos = [
-		{ index: 24, width: 4000, height: 6000 },
-		{ index: 3, width: 4000, height: 6000 },
-		{ index: 1, width: 4000, height: 6000 },
-		{ index: 2, width: 4000, height: 6000 },
-		{ index: 4, width: 4000, height: 6000 },
-		{ index: 5, width: 4000, height: 6000 },
-		{ index: 6, width: 4000, height: 6000 },
-		{ index: 7, width: 4000, height: 6000 },
-		{ index: 13, width: 1866, height: 2800 },
-		{ index: 15, width: 1866, height: 2800 },
-		{ index: 16, width: 1866, height: 2800 },
-		{ index: 17, width: 1866, height: 2800 },
-		{ index: 19, width: 1866, height: 2800 },
-		{ index: 20, width: 2100, height: 2800 },
-		{ index: 21, width: 1866, height: 2800 },
-		{ index: 14, width: 1866, height: 2800 },
-		{ index: 18, width: 1866, height: 2800 },
-		{ index: 8, width: 4000, height: 6000 },
-		{ index: 22, width: 1866, height: 2800 },
-		{ index: 23, width: 4000, height: 6000 },
-		{ index: 25, width: 5570, height: 4557 },
-		{ index: 26, width: 4974, height: 3880 },
-		{ index: 27, width: 4825, height: 4256 },
-		{ index: 28, width: 4672, height: 7008 },
-		{ index: 29, width: 4000, height: 6000 },
-		{ index: 30, width: 4000, height: 6000 }
+		{ src: photo24, thumbnail: thumbnail24, width: 4000, height: 6000 },
+		{ src: photo3, thumbnail: thumbnail3, width: 4000, height: 6000 },
+		{ src: photo1, thumbnail: thumbnail1, width: 4000, height: 6000 },
+		{ src: photo2, thumbnail: thumbnail2, width: 4000, height: 6000 },
+		{ src: photo4, thumbnail: thumbnail4, width: 4000, height: 6000 },
+		{ src: photo5, thumbnail: thumbnail5, width: 4000, height: 6000 },
+		{ src: photo6, thumbnail: thumbnail6, width: 4000, height: 6000 },
+		{ src: photo7, thumbnail: thumbnail7, width: 4000, height: 6000 },
+		{ src: photo13, thumbnail: thumbnail13, width: 1866, height: 2800 },
+		{ src: photo15, thumbnail: thumbnail15, width: 1866, height: 2800 },
+		{ src: photo16, thumbnail: thumbnail16, width: 1866, height: 2800 },
+		{ src: photo17, thumbnail: thumbnail17, width: 1866, height: 2800 },
+		{ src: photo19, thumbnail: thumbnail19, width: 1866, height: 2800 },
+		{ src: photo20, thumbnail: thumbnail20, width: 2100, height: 2800 },
+		{ src: photo21, thumbnail: thumbnail21, width: 1866, height: 2800 },
+		{ src: photo14, thumbnail: thumbnail14, width: 1866, height: 2800 },
+		{ src: photo18, thumbnail: thumbnail18, width: 1866, height: 2800 },
+		{ src: photo8, thumbnail: thumbnail8, width: 4000, height: 6000 },
+		{ src: photo22, thumbnail: thumbnail22, width: 1866, height: 2800 },
+		{ src: photo23, thumbnail: thumbnail23, width: 4000, height: 6000 },
+		{ src: photo25, thumbnail: thumbnail25, width: 5570, height: 4557 },
+		{ src: photo26, thumbnail: thumbnail26, width: 4974, height: 3880 },
+		{ src: photo27, thumbnail: thumbnail27, width: 4825, height: 4256 },
+		{ src: photo28, thumbnail: thumbnail28, width: 4672, height: 7008 },
+		{ src: photo29, thumbnail: thumbnail29, width: 4000, height: 6000 },
+		{ src: photo30, thumbnail: thumbnail30, width: 4000, height: 6000 }
 	];
 </script>
 
@@ -142,14 +194,14 @@
 	<div id="gallery">
 		{#each photos as photo}
 			<a
-				href={getImagePath(photo.index)}
+				href={photo.src}
 				class="slide"
 				data-pswp-width={photo.width}
 				data-pswp-height={photo.height}
 			>
 				<img 
 					class="thumbnail lazy" 
-					data-src={thumbnailImagePath(photo.index)}
+					data-src={photo.thumbnail}
 					alt="" 
 					loading="lazy" 
 					decoding="async"
