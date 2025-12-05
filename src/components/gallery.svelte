@@ -99,7 +99,7 @@
 				});
 			},
 			{
-				rootMargin: '50px' // 50px 전에 미리 로딩
+				rootMargin: '30px' // 50px 전에 미리 로딩
 			}
 		);
 
@@ -119,7 +119,7 @@
 			// 모바일 최적화
 			pinchToClose: true,
 			allowPanToNext: true,
-			loop: false // 무한 루프 비활성화로 메모리 절약
+			loop: true // 무한 루프 비활성화로 메모리 절약
 		});
 
 		// PhotoSwipe 이벤트 리스너 추가 (메모리 관리)
