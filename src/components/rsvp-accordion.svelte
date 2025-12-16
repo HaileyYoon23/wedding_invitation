@@ -30,10 +30,11 @@
 		<div {...item.heading} class="heading">
 			<button {...item.trigger} class="trigger {localeStore.locale}">
 				{item.item.title}
+				<div class="chevron-down-container {localeStore.locale}" class:rotate={item.isExpanded}>
+					<ChevronDown strokeWidth={1.25} />
+				</div>
 			</button>
-			<div class="chevron-down-container {localeStore.locale}" class:rotate={item.isExpanded}>
-				<ChevronDown strokeWidth={1.25} />
-			</div>
+			
 		</div>
 
 		{#if item.isExpanded}
@@ -63,10 +64,10 @@
 	</p>
 {/snippet}
 
-<!-- <div class="accordion-root" {...accordion.root}>
+<div class="accordion-root" {...accordion.root}>
 	{@render accordionItem(howToComeItem, howToComeContent)}
 	{@render accordionItem(menuItem, menuContent)}
-</div> -->
+</div>
 
 <style lang="scss">
 	.accordion-root {
