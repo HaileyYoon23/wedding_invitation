@@ -63,3 +63,4 @@ done
 echo "리사이즈 완료!"
 echo "처리된 파일 수: $count개"
 
+
