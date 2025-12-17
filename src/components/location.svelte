@@ -43,8 +43,7 @@
 			lng: 127.105725
 		};
 
-		// 티맵 앱 스킴 시도
-		const tmapAppUrl = `tmap://route?goalname=${encodeURIComponent(destination.name)}&goalx=${destination.lng}&goaly=${destination.lat}`;
+		const tmapAppUrl = `https://apis.openapi.sk.com/tmap/app/routes?appKey=l7xx7179ddde21ca4bfb8e6b03c710138f41&name=${destination.name}&lon=${destination.lng}&lat=${destination.lat}`;
 		
 		// 모바일에서 앱 스킴 시도
 		if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -53,7 +52,7 @@
 			const timeout = setTimeout(() => {
 				// 앱이 열리지 않았다면 웹 버전으로 이동
 				if (Date.now() - startTime < 2000) {
-					window.open(`https://tmapapi.sktelecom.com/main.html#webservice/docs/tmapapp`, '_blank');
+					window.open(`https://www.tmapmobility.com/`, '_blank');
 				}
 			}, 1500);
 
@@ -68,7 +67,7 @@
 			});
 		} else {
 			// 데스크톱에서는 티맵 웹사이트로 이동
-			window.open(`https://tmapapi.sktelecom.com/main.html#webservice/docs/tmapapp`, '_blank');
+			window.open(`https://www.tmapmobility.com/`, '_blank');
 		}
 	}
 
@@ -155,19 +154,19 @@
 		<ul>
 			<li>
 				<button type="button" class="nav-link" onclick={startNavigation}>
-					<img src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/kakaonav.png" draggable="false" alt="카카오내비 아이콘">
+					<img style="width: 2.2em;" src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/kakaonav.png" draggable="false" alt="카카오내비 아이콘">
 					카카오내비
 				</button>
 			</li>
 			<li>
 				<button type="button" class="nav-link" onclick={startTmapNavigation}>
-					<img src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/tmap.png" draggable="false" alt="티맵 아이콘">
+					<img style="width: 2.0em;" src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/tmap.png" draggable="false" alt="티맵 아이콘">
 					티맵
 				</button>
 			</li>
 			<li>
 				<a href="https://naver.me/I5yLhgW1" class="nav-link" target="_blank">
-					<img src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/navermap.jpg" draggable="false" alt="네이버 지도 아이콘"> 
+					<img style="width: 2.4em;" src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/navermap.jpg" draggable="false" alt="네이버 지도 아이콘"> 
 					네이버 지도
 				</a>
 			</li>
@@ -201,13 +200,8 @@
 	.navigation-links ul li {
 		float: left;
 		margin-top: 1em;
-		margin-right: 1em;
-	}
-	.navigation-links ul li a {
-		font-family: Noto Sans KR, sans-serif;
-		color: #666;
-		font-size: 0.9rem;
-		letter-spacing: -0.5px;
+		margin-right: 0.4em;
+		height: 2.5em;
 	}
 
 	.navigation-links ul li img {
@@ -275,7 +269,6 @@
 		margin-top: 2em;
 		width: 100%;
 		height: 16em;
-		margin-bottom: 1em;
 		border-radius: 8px;
 		overflow: hidden;
 	}
@@ -283,16 +276,17 @@
 	.navigation-links {
 		display: flex;
 		gap: 1rem;
-		margin: 1rem 0;
+		margin: 0rem 0;
 		justify-content: center;
 		flex-wrap: wrap;
 	}
 
 	.nav-link {
+		height: inherit;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.5rem 0.5rem;
+		padding: 0rem 0.3rem;
 		background-color: rgba(255, 255, 255, 0.1);
 		border: 1px solid rgba(224, 224, 224, 0.1);
 		border-radius: 6px;
@@ -303,6 +297,7 @@
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		cursor: pointer;
 		font-family: inherit;
+		font-size: 0.9rem;
 
 		&:hover {
 			background-color: #f5f5f5;
