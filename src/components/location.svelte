@@ -1,5 +1,6 @@
 <script lang="ts">
 	import locationTopWave from '$lib/assets/location-top-wave.svg';
+	import kakaomapIcon from '$lib/assets/etc/kakaomap.png';
 	import { _ } from 'svelte-i18n';
 	import { localeStore } from '../i18n.svelte';
 	import { Clipboard } from '@lucide/svelte';
@@ -155,7 +156,7 @@
 			<li>
 				<button type="button" class="nav-link" onclick={startNavigation}>
 					<img style="width: 2.2em;" src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/kakaonav.png" draggable="false" alt="카카오내비 아이콘">
-					카카오내비
+					카카오네비
 				</button>
 			</li>
 			<li>
@@ -165,9 +166,15 @@
 				</button>
 			</li>
 			<li>
+				<a href="https://kko.to/HABe17A8YV" class="nav-link" target="_blank">
+					<img style="width: 2.4em;" src={kakaomapIcon} draggable="false" alt="카카오맵 아이콘"> 
+					카카오맵
+				</a>
+			</li>
+			<li>
 				<a href="https://naver.me/I5yLhgW1" class="nav-link" target="_blank">
 					<img style="width: 2.4em;" src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/navermap.jpg" draggable="false" alt="네이버 지도 아이콘"> 
-					네이버 지도
+					네이버맵
 				</a>
 			</li>
 		</ul>
@@ -190,7 +197,7 @@
 	.navigation-links {
 		position: relative;
 		text-align: center;
-		width: 100%;
+		width: 110%;
 	}
 	.navigation-links ul {
 		display: inline-block;
@@ -297,7 +304,7 @@
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		cursor: pointer;
 		font-family: inherit;
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 
 		&:hover {
 			background-color: #f5f5f5;
