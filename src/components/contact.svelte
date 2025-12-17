@@ -6,14 +6,14 @@
 
 </script>
 
-<section class="account">
+<section class="contact">
 	<div class="accordion-container">
 		<ContactAccordion />
 	</div>
 </section>
 
 <style lang="scss">
-	section.account {
+	section.contact {
 		padding: 4.5em 3.5em;
 	}
 

@@ -5,6 +5,7 @@
 	import { slide } from 'svelte/transition';
 	import { ChevronDown } from '@lucide/svelte';
 	import { type Snippet } from 'svelte';
+	import copyIcon from '../lib/assets/etc/copy.svg';
 
 	type Item = AccordionItem<{
 		title: string;
@@ -45,7 +46,7 @@
 		// 2초 후에 토스트 숨기기
 		toastTimeout = setTimeout(() => {
 			showToast = false;
-		}, 2000);
+		}, 700);
 	}
 
 	// 클립보드에 복사하는 함수
@@ -84,7 +85,7 @@
 
 {#snippet accordionItem(item: ReturnType<Accordion['getItem']>, content: Snippet)}
 	<div class="item">
-		<div {...item.heading} class="heading">
+		<div {...item.heading} class="account-heading">
 			<button {...item.trigger} class="trigger {localeStore.locale}">
 				{item.item.title}
 				<div class="chevron-down-container {localeStore.locale}" class:rotate={item.isExpanded}>
@@ -109,48 +110,54 @@
 {#snippet account_1_content()}
 	<button 
 		onclick={handlePClick}
-		class="clickable account-button" 
+		class="clickable account-button groom-self" 
 		aria-label="계좌번호 복사하기"
 	>
-		{$_('contact.accordion.groom.self')}
+		<img src={copyIcon} alt="복사" class="copy-icon" />
+		<span class="button-text">{$_('contact.accordion.groom.self')}</span>
 	</button>
 	<button 
 		onclick={handlePClick}
-		class="clickable account-button" 
+		class="clickable account-button groom-father" 
 		aria-label="계좌번호 복사하기"
 	>
-		{$_('contact.accordion.groom.father')}
+		<img src={copyIcon} alt="복사" class="copy-icon" />
+		<span class="button-text">{$_('contact.accordion.groom.father')}</span>
 	</button>
 	<button 
 		onclick={handlePClick}
-		class="clickable account-button" 
+		class="clickable account-button groom-mother" 
 		aria-label="계좌번호 복사하기"
 	>
-		{$_('contact.accordion.groom.mother')}
+		<img src={copyIcon} alt="복사" class="copy-icon" />
+		<span class="button-text">{$_('contact.accordion.groom.mother')}</span>
 	</button>
 {/snippet}
 
 {#snippet account_2_content()}
 	<button 
 		onclick={handlePClick}
-		class="clickable account-button" 
+		class="clickable account-button bride-self" 
 		aria-label="계좌번호 복사하기"
 	>
-		{$_('contact.accordion.bride.self')}
+		<img src={copyIcon} alt="복사" class="copy-icon" />
+		<span class="button-text">{$_('contact.accordion.bride.self')}</span>
 	</button>
 	<button 
 		onclick={handlePClick}
-		class="clickable account-button" 
+		class="clickable account-button bride-father" 
 		aria-label="계좌번호 복사하기"
 	>
-		{$_('contact.accordion.bride.father')}
+		<img src={copyIcon} alt="복사" class="copy-icon" />
+		<span class="button-text">{$_('contact.accordion.bride.father')}</span>
 	</button>
 	<button 
 		onclick={handlePClick}
-		class="clickable account-button" 
+		class="clickable account-button bride-mother" 
 		aria-label="계좌번호 복사하기"
 	>
-		{$_('contact.accordion.bride.mother')}
+		<img src={copyIcon} alt="복사" class="copy-icon" />
+		<span class="button-text">{$_('contact.accordion.bride.mother')}</span>
 	</button>
 {/snippet}
 
@@ -175,7 +182,7 @@
 
 <style lang="scss">
 	.contact-title {
-		font-size: 1.1rem;
+		font-size: 1.2rem;
 		text-align: center;
 	}
 	.contact-sub-title {
@@ -183,15 +190,17 @@
 		text-align: center;
 	}
 	.accordion-root {
-		width: 70%;
+		width: 90%;
 	}
 
 	.item {
 		margin-bottom: 1em;
 	}
 
-	.heading {
-		border-top: 1px solid $primary-color-light;
+	.account-heading {
+		border: 2px solid $primary-color-light;
+		background-color: rgba(0, 69, 108, 0.03);
+		border-radius: 7px;
 		position: relative;
 	}
 
@@ -199,16 +208,9 @@
 		color: $primary-color;
 		width: 100%;
 
-		&.en {
-			letter-spacing: 1px;
-			font-weight: 600;
-			font-size: 1.3rem;
-			padding: 0.6em 0;
-		}
-
 		&.kr {
 			letter-spacing: 1px;
-			font-weight: 500;
+			font-weight: 700;
 			font-size: 1.1rem;
 			padding: 0.8em 0;
 		}
@@ -247,28 +249,54 @@
 			font-family: inherit;
 			font-size: inherit;
 			color: inherit;
-			text-align: center;
 			width: 100%;
-			display: block;
+			display: flex;
+			align-items: center;
+			position: relative;
+
+			.copy-icon {
+				width: 16px;
+				height: 16px;
+				opacity: 0.7;
+				transition: opacity 0.2s ease;
+				position: absolute;
+				left: 1em;
+			}
+
+			.button-text {
+				width: 100%;
+				text-align: center;
+				padding-left: 1.8em;
+			}
 
 			&.clickable {
 				cursor: pointer;
 				transition: all 0.2s ease;
-				padding: 0.3em 0.5em;
-				border-radius: 4px;
+				padding: 0.5em 1em;
+				border-radius: 6px;
+				border: 1px solid rgba(156, 163, 175, 0.3);
+				background-color: rgba(156, 163, 175, 0.1);
+				color: #4b5563;
 
 				&:hover {
-					background-color: rgba(0, 0, 0, 0.05);
 					transform: scale(1.02);
+					background-color: rgba(156, 163, 175, 0.2);
+					border-color: rgba(156, 163, 175, 0.5);
+					
+					.copy-icon {
+						opacity: 1;
+					}
 				}
 
 				&:active {
 					transform: scale(0.98);
-					background-color: rgba(0, 0, 0, 0.1);
+					background-color: rgba(107, 114, 128, 0.3);
+					border-color: rgba(107, 114, 128, 0.6);
+					color: #374151;
 				}
 
 				&:focus {
-					outline: 2px solid rgba(0, 0, 0, 0.2);
+					outline: 2px solid rgba(156, 163, 175, 0.4);
 					outline-offset: 2px;
 				}
 			}
@@ -288,7 +316,7 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		background-color: rgba(0, 0, 0, 0.8);
+		background-color: rgba(0, 0, 0, 0.5);
 		color: white;
 		padding: 0.8rem 1.5rem;
 		border-radius: 8px;

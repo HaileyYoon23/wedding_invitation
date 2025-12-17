@@ -20,7 +20,73 @@
 			.catch(() => null);
 	}
 
+	function startNavigation() {
+		// @ts-ignore
+		if (window.Kakao && window.Kakao.Navi) {
+			// @ts-ignore
+			window.Kakao.Navi.start({
+				name: '더컨벤션 잠실',
+				x: 127.105725,
+				y: 37.515711,
+				coordType: 'wgs84',
+			});
+		} else {
+			// Kakao SDK가 로드되지 않은 경우 카카오맵 웹사이트로 이동
+			window.open('https://kko.to/HABe17A8YV');
+		}
+	}
+
+	function startTmapNavigation() {
+		const destination = {
+			name: '더컨벤션 잠실',
+			lat: 37.515711,
+			lng: 127.105725
+		};
+
+		// 티맵 앱 스킴 시도
+		const tmapAppUrl = `tmap://route?goalname=${encodeURIComponent(destination.name)}&goalx=${destination.lng}&goaly=${destination.lat}`;
+		
+		// 모바일에서 앱 스킴 시도
+		if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+			// 앱이 설치되어 있지 않을 경우를 대비한 타이머
+			const startTime = Date.now();
+			const timeout = setTimeout(() => {
+				// 앱이 열리지 않았다면 웹 버전으로 이동
+				if (Date.now() - startTime < 2000) {
+					window.open(`https://tmapapi.sktelecom.com/main.html#webservice/docs/tmapapp`, '_blank');
+				}
+			}, 1500);
+
+			// 앱 스킴 시도
+			window.location.href = tmapAppUrl;
+			
+			// 페이지가 숨겨지면 (앱이 열렸다면) 타이머 취소
+			document.addEventListener('visibilitychange', () => {
+				if (document.hidden) {
+					clearTimeout(timeout);
+				}
+			});
+		} else {
+			// 데스크톱에서는 티맵 웹사이트로 이동
+			window.open(`https://tmapapi.sktelecom.com/main.html#webservice/docs/tmapapp`, '_blank');
+		}
+	}
+
 	onMount(() => {
+		// Kakao JavaScript SDK 로드 (네비게이션용)
+		const kakaoSDKScript = document.createElement('script');
+		kakaoSDKScript.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.7/kakao.min.js';
+		kakaoSDKScript.integrity = 'sha384-tJkjbtDbvoxO+diRuDtwRO9JXR7pjWnfjfRn5ePUpl7e7RJCxKCwwnfqUAdXh53p';
+		kakaoSDKScript.crossOrigin = 'anonymous';
+		kakaoSDKScript.onload = () => {
+			// @ts-ignore
+			if (window.Kakao && !window.Kakao.isInitialized()) {
+				// @ts-ignore
+				window.Kakao.init('5fb1510d2c5d6e295def723502664492'); // JavaScript 키로 초기화
+			}
+		};
+		document.head.appendChild(kakaoSDKScript);
+
 		// Kakao Maps 스크립트 로드
 		const script = document.createElement('script');
 		script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=5fb1510d2c5d6e295def723502664492&autoload=false';
@@ -31,8 +97,8 @@
 					// @ts-ignore
 					center: new window.kakao.maps.LatLng(37.515711, 127.105725),
 					level: 4,
-					draggable: false,
-					zoomable: false,
+					draggable: true,
+					zoomable: true,
 				};
 				// @ts-ignore
 				const map = new window.kakao.maps.Map(mapContainer, options);
@@ -44,7 +110,9 @@
 				// map.addControl(mapTypeControl, window.kakao.maps.ControlPosition.TOPRIGHT);
 
 				// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+				// @ts-ignore
 				const zoomControl = new window.kakao.maps.ZoomControl();
+				// @ts-ignore
 				map.addControl(zoomControl, window.kakao.maps.ControlPosition.RIGHT);
 
 
@@ -64,6 +132,7 @@
 					// 카카오맵 사이트로 이동
 					window.open('https://kko.to/HABe17A8YV');
 				});
+
 			});
 		};
 		document.head.appendChild(script);
@@ -80,6 +149,31 @@
 		<span class="address">서울 송파구 올림픽로 319 3층</span></button
 	>
 	<div class="map" bind:this={mapContainer}></div>
+	
+	<!-- 네비게이션 앱 링크들 -->
+	<div class="navigation-links">
+		<ul>
+			<li>
+				<button type="button" class="nav-link" onclick={startNavigation}>
+					<img src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/kakaonav.png" draggable="false" alt="카카오내비 아이콘">
+					카카오내비
+				</button>
+			</li>
+			<li>
+				<button type="button" class="nav-link" onclick={startTmapNavigation}>
+					<img src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/tmap.png" draggable="false" alt="티맵 아이콘">
+					티맵
+				</button>
+			</li>
+			<li>
+				<a href="https://naver.me/I5yLhgW1" class="nav-link" target="_blank">
+					<img src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/navermap.jpg" draggable="false" alt="네이버 지도 아이콘"> 
+					네이버 지도
+				</a>
+			</li>
+		</ul>
+		
+	</div>
 </section>
 
 <!-- Copy Success Modal -->
@@ -94,6 +188,33 @@
 {/if}
 
 <style lang="scss">
+	.navigation-links {
+		position: relative;
+		text-align: center;
+		width: 100%;
+	}
+	.navigation-links ul {
+		display: inline-block;
+		padding: 0;
+		list-style-type: none;
+	}
+	.navigation-links ul li {
+		float: left;
+		margin-top: 1em;
+		margin-right: 1em;
+	}
+	.navigation-links ul li a {
+		font-family: Noto Sans KR, sans-serif;
+		color: #666;
+		font-size: 0.9rem;
+		letter-spacing: -0.5px;
+	}
+
+	.navigation-links ul li img {
+		width: 2.3em;
+		vertical-align: middle;
+		padding-right: 0.5em;
+	}
 	img.location-top-wave {
 		max-width: $content-max-width;
 		margin: auto;
@@ -159,12 +280,42 @@
 		overflow: hidden;
 	}
 
-	iframe.google-maps {
-		width: 100%;
-		height: 100%;
-		border: none;
-		border-radius: 8px;
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	.navigation-links {
+		display: flex;
+		gap: 1rem;
+		margin: 1rem 0;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.nav-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5rem 0.5rem;
+		background-color: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(224, 224, 224, 0.1);
+		border-radius: 6px;
+		text-decoration: none;
+		color: $font-color-default;
+		font-weight: 500;
+		transition: all 0.2s ease;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		cursor: pointer;
+		font-family: inherit;
+
+		&:hover {
+			background-color: #f5f5f5;
+			border-color: $primary-color;
+			color: $primary-color;
+			transform: translateY(-1px);
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+		}
+
+		&:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
 	}
 
 	p.signature {
@@ -174,12 +325,6 @@
 		margin-top: 0.2em;
 		color: $font-color-default;
 		cursor: pointer;
-	}
-
-	img.location-deco {
-		position: absolute;
-		bottom: 2.5em;
-		right: 1.5em;
 	}
 
 	.copy-modal {
