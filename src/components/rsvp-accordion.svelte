@@ -13,7 +13,7 @@
 
 	const items: Item[] = [
 		{ id: '1', title: $_('rsvp.accordion.how_to_come') },
-		{ id: '2', title: $_('rsvp.accordion.the_menu') }
+		{ id: '2', title: $_('rsvp.accordion.dining_place_title') }
 	];
 	
 
@@ -60,13 +60,7 @@
 {/snippet}
 
 {#snippet menuContent()}
-	<p class="menu-title">{$_('rsvp.accordion.menu_title')}</p>
-	<p class="beef">{$_('rsvp.accordion.beef')}</p>
-	<p>&</p>
-	<p class="fish">{$_('rsvp.accordion.fish')}</p>
-	<p class="vegetarian">
-		{$_('rsvp.accordion.vegetarian')}
-	</p>
+	<p class="dining-place-content">{$_('rsvp.accordion.dining_place_content')}</p>
 {/snippet}
 
 <div class="accordion-root" {...accordion.root}>
@@ -145,7 +139,8 @@
 				margin-bottom: 2.5em;
 			}
 
-			&.content-title {
+			&.content-title,
+			&.dining-place-content {
 				font-family: '나눔고딕', sans-serif;
 				margin-bottom: 0.5em;
 				font-weight: 800;
