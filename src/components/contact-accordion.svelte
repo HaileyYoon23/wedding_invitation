@@ -114,7 +114,7 @@
 		aria-label="계좌번호 복사하기"
 	>
 		<img src={copyIcon} alt="복사" class="copy-icon" />
-		<span class="button-text">{$_('contact.accordion.groom.self_name')} <br /> {$_('contact.accordion.groom.self')}</span>
+		<span class="button-text"><span class="name">{$_('contact.accordion.groom.self_name')}</span> <br /> {$_('contact.accordion.groom.self')}</span>
 	</button>
 	<button 
 		onclick={handlePClick}
@@ -122,7 +122,7 @@
 		aria-label="계좌번호 복사하기"
 	>
 		<img src={copyIcon} alt="복사" class="copy-icon" />
-		<span class="button-text">{$_('contact.accordion.groom.father_name')} <br /> {$_('contact.accordion.groom.father')}</span>
+		<span class="button-text"><span class="name">{$_('contact.accordion.groom.father_name')}</span> <br /> {$_('contact.accordion.groom.father')}</span>
 	</button>
 	<button 
 		onclick={handlePClick}
@@ -130,7 +130,7 @@
 		aria-label="계좌번호 복사하기"
 	>
 		<img src={copyIcon} alt="복사" class="copy-icon" />
-		<span class="button-text">{$_('contact.accordion.groom.mother_name')} <br /> {$_('contact.accordion.groom.mother')}</span>
+		<span class="button-text"><span class="name">{$_('contact.accordion.groom.mother_name')}</span> <br /> {$_('contact.accordion.groom.mother')}</span>
 	</button>
 {/snippet}
 
@@ -141,7 +141,7 @@
 		aria-label="계좌번호 복사하기"
 	>
 		<img src={copyIcon} alt="복사" class="copy-icon" />
-		<span class="button-text">{$_('contact.accordion.bride.self_name')} <br /> {$_('contact.accordion.bride.self')}</span>
+		<span class="button-text"><span class="name">{$_('contact.accordion.bride.self_name')}</span> <br /> {$_('contact.accordion.bride.self')}</span>
 	</button>
 	<button 
 		onclick={handlePClick}
@@ -149,7 +149,7 @@
 		aria-label="계좌번호 복사하기"
 	>
 		<img src={copyIcon} alt="복사" class="copy-icon" />
-		<span class="button-text">{$_('contact.accordion.bride.father_name')} <br /> {$_('contact.accordion.bride.father')}</span>
+		<span class="button-text"><span class="name">{$_('contact.accordion.bride.father_name')}</span> <br /> {$_('contact.accordion.bride.father')}</span>
 	</button>
 	<button 
 		onclick={handlePClick}
@@ -157,7 +157,7 @@
 		aria-label="계좌번호 복사하기"
 	>
 		<img src={copyIcon} alt="복사" class="copy-icon" />
-		<span class="button-text">{$_('contact.accordion.bride.mother_name')} <br /> {$_('contact.accordion.bride.mother')}</span>
+		<span class="button-text"><span class="name">{$_('contact.accordion.bride.mother_name')}</span> <br /> {$_('contact.accordion.bride.mother')}</span>
 	</button>
 {/snippet}
 
@@ -267,6 +267,10 @@
 				width: 100%;
 				text-align: left;
 				padding-left: 2em;
+
+				.name {
+					font-weight: 650;
+				}
 			}
 
 			&.clickable {
