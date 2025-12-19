@@ -50,8 +50,13 @@
 {/snippet}
 
 {#snippet howToComeContent()}
-	<p class="semi-formal">{$_('rsvp.accordion.semi_formal')}</p>
-	<p>{$_('rsvp.accordion.suit_and_tie')}</p>
+	<p class="subway content-title">{$_('rsvp.accordion.subway')}</p>
+	<p class="subway-list">{$_('rsvp.accordion.subway_list')}</p>
+	<p class="bus content-title">{$_('rsvp.accordion.bus')}</p>
+	<p class="bus-list-1">{$_('rsvp.accordion.bus_list_1')}</p>
+	<p class="bus-list-2">{$_('rsvp.accordion.bus_list_2')}</p>
+	<p class="bus-list-3">{$_('rsvp.accordion.bus_list_3')}</p>
+	<p class="bus-list-4">{$_('rsvp.accordion.bus_list_4')}</p>
 {/snippet}
 
 {#snippet menuContent()}
@@ -133,46 +138,26 @@
 			text-align: center;
 		}
 
-		&.en p {
-			font-size: 1.1rem;
-
-			&.semi-formal {
-				margin-bottom: 0.5em;
-			}
-
-			&.menu-title {
-				margin-bottom: 1em;
-			}
-
-			&.beef,
-			&.fish {
-				font-weight: 700;
-			}
-
-			&.vegetarian {
-				margin-top: 1em;
-			}
-		}
-
 		&.kr p {
 			font-size: 0.9rem;
 
 			&:not(:last-child) {
+				margin-bottom: 2.5em;
+			}
+
+			&.content-title {
+				font-family: '나눔고딕', sans-serif;
 				margin-bottom: 0.5em;
+				font-weight: 800;
 			}
 
-			&.semi-formal,
-			&.menu-title {
-				margin-bottom: 1.5em;
-			}
 
-			&.beef,
-			&.fish {
-				font-weight: 600;
-			}
-
-			&.vegetarian {
-				margin-top: 1.5em;
+			&.subway-list,
+			&.bus-list-1,
+			&.bus-list-2,
+			&.bus-list-3,
+			&.bus-list-4 {
+				font-family: '나눔고딕', sans-serif;
 			}
 		}
 	}
