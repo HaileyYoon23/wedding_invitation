@@ -70,8 +70,6 @@
 <section class="fin">
 	<div style:height="50px;"></div>
 	<p class="signature en">made by YoonSeo ♡</p>
-	<a class="github-icon" href="https://github.com/HaileyYoon23" target="_blank"
-		><Github size="1.1em" strokeWidth={1} /></a>
 </section>
 
 <style lang="scss">
