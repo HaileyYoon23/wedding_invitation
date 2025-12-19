@@ -15,7 +15,14 @@
 			title = $_('meta.title');
 		}
 	});
+
+	function handleContextMenu(e: MouseEvent) {
+		e.preventDefault();
+		return false;
+	}
 </script>
+
+<svelte:window oncontextmenu={handleContextMenu} />
 
 <svelte:head>
 	<title>{title}</title>
