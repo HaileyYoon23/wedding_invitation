@@ -156,7 +156,7 @@
 			<li>
 				<button type="button" class="nav-link" onclick={startNavigation}>
 					<img style="width: 2.2em;" src="https://static.barunsoncard.com/barunsonmcard/invitation/icon/kakaonav.png" draggable="false" alt="카카오내비 아이콘">
-					카카오네비
+					카카오내비
 				</button>
 			</li>
 			<li>
