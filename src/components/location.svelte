@@ -197,7 +197,7 @@
 	.navigation-links {
 		position: relative;
 		text-align: center;
-		width: 110%;
+		width: 120%;
 	}
 	.navigation-links ul {
 		display: inline-block;
