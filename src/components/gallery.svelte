@@ -15,6 +15,10 @@
 	import photo6 from '$lib/assets/gallery/6.webp';
 	import photo7 from '$lib/assets/gallery/7.webp';
 	import photo8 from '$lib/assets/gallery/8.webp';
+	import photo9 from '$lib/assets/gallery/9.webp';
+	import photo10 from '$lib/assets/gallery/10.webp';
+	import photo11 from '$lib/assets/gallery/11.webp';
+	import photo12 from '$lib/assets/gallery/12.webp';
 	import photo13 from '$lib/assets/gallery/13.webp';
 	import photo14 from '$lib/assets/gallery/14.webp';
 	import photo15 from '$lib/assets/gallery/15.webp';
@@ -33,34 +37,56 @@
 	import photo28 from '$lib/assets/gallery/28.webp';
 	import photo29 from '$lib/assets/gallery/29.webp';
 	import photo30 from '$lib/assets/gallery/30.webp';
+	import photo31 from '$lib/assets/gallery/31.webp';
+	import photo32 from '$lib/assets/gallery/32.webp';
+	import photo33 from '$lib/assets/gallery/33.webp';
+	import photo34 from '$lib/assets/gallery/34.webp';
+	import photo35 from '$lib/assets/gallery/35.webp';
+	import photo36 from '$lib/assets/gallery/36.webp';
+	import photo37 from '$lib/assets/gallery/37.webp';
+	import photo38 from '$lib/assets/gallery/38.webp';
+	import photo39 from '$lib/assets/gallery/39.webp';
 
 	// Thumbnail images
-	import thumbnail1 from '$lib/assets/gallery/thumbnail/1.webp';
-	import thumbnail2 from '$lib/assets/gallery/thumbnail/2.webp';
-	import thumbnail3 from '$lib/assets/gallery/thumbnail/3.webp';
-	import thumbnail4 from '$lib/assets/gallery/thumbnail/4.webp';
-	import thumbnail5 from '$lib/assets/gallery/thumbnail/5.webp';
-	import thumbnail6 from '$lib/assets/gallery/thumbnail/6.webp';
-	import thumbnail7 from '$lib/assets/gallery/thumbnail/7.webp';
-	import thumbnail8 from '$lib/assets/gallery/thumbnail/8.webp';
-	import thumbnail13 from '$lib/assets/gallery/thumbnail/13.webp';
-	import thumbnail14 from '$lib/assets/gallery/thumbnail/14.webp';
-	import thumbnail15 from '$lib/assets/gallery/thumbnail/15.webp';
-	import thumbnail16 from '$lib/assets/gallery/thumbnail/16.webp';
-	import thumbnail17 from '$lib/assets/gallery/thumbnail/17.webp';
-	import thumbnail18 from '$lib/assets/gallery/thumbnail/18.webp';
-	import thumbnail19 from '$lib/assets/gallery/thumbnail/19.webp';
-	import thumbnail20 from '$lib/assets/gallery/thumbnail/20.webp';
-	import thumbnail21 from '$lib/assets/gallery/thumbnail/21.webp';
-	import thumbnail22 from '$lib/assets/gallery/thumbnail/22.webp';
-	import thumbnail23 from '$lib/assets/gallery/thumbnail/23.webp';
-	import thumbnail24 from '$lib/assets/gallery/thumbnail/24.webp';
-	import thumbnail25 from '$lib/assets/gallery/thumbnail/25.webp';
-	import thumbnail26 from '$lib/assets/gallery/thumbnail/26.webp';
-	import thumbnail27 from '$lib/assets/gallery/thumbnail/27.webp';
-	import thumbnail28 from '$lib/assets/gallery/thumbnail/28.webp';
-	import thumbnail29 from '$lib/assets/gallery/thumbnail/29.webp';
-	import thumbnail30 from '$lib/assets/gallery/thumbnail/30.webp';
+	import thumbnail1 from '$lib/assets/gallery/thumbnail/1_thumb.webp';
+	import thumbnail2 from '$lib/assets/gallery/thumbnail/2_thumb.webp';
+	import thumbnail3 from '$lib/assets/gallery/thumbnail/3_thumb.webp';
+	import thumbnail4 from '$lib/assets/gallery/thumbnail/4_thumb.webp';
+	import thumbnail5 from '$lib/assets/gallery/thumbnail/5_thumb.webp';
+	import thumbnail6 from '$lib/assets/gallery/thumbnail/6_thumb.webp';
+	import thumbnail7 from '$lib/assets/gallery/thumbnail/7_thumb.webp';
+	import thumbnail8 from '$lib/assets/gallery/thumbnail/8_thumb.webp';
+	import thumbnail9 from '$lib/assets/gallery/thumbnail/9_thumb.webp';
+	import thumbnail10 from '$lib/assets/gallery/thumbnail/10_thumb.webp';
+	import thumbnail11 from '$lib/assets/gallery/thumbnail/11_thumb.webp';
+	import thumbnail12 from '$lib/assets/gallery/thumbnail/12_thumb.webp';
+	import thumbnail13 from '$lib/assets/gallery/thumbnail/13_thumb.webp';
+	import thumbnail14 from '$lib/assets/gallery/thumbnail/14_thumb.webp';
+	import thumbnail15 from '$lib/assets/gallery/thumbnail/15_thumb.webp';
+	import thumbnail16 from '$lib/assets/gallery/thumbnail/16_thumb.webp';
+	import thumbnail17 from '$lib/assets/gallery/thumbnail/17_thumb.webp';
+	import thumbnail18 from '$lib/assets/gallery/thumbnail/18_thumb.webp';
+	import thumbnail19 from '$lib/assets/gallery/thumbnail/19_thumb.webp';
+	import thumbnail20 from '$lib/assets/gallery/thumbnail/20_thumb.webp';
+	import thumbnail21 from '$lib/assets/gallery/thumbnail/21_thumb.webp';
+	import thumbnail22 from '$lib/assets/gallery/thumbnail/22_thumb.webp';
+	import thumbnail23 from '$lib/assets/gallery/thumbnail/23_thumb.webp';
+	import thumbnail24 from '$lib/assets/gallery/thumbnail/24_thumb.webp';
+	import thumbnail25 from '$lib/assets/gallery/thumbnail/25_thumb.webp';
+	import thumbnail26 from '$lib/assets/gallery/thumbnail/26_thumb.webp';
+	import thumbnail27 from '$lib/assets/gallery/thumbnail/27_thumb.webp';
+	import thumbnail28 from '$lib/assets/gallery/thumbnail/28_thumb.webp';
+	import thumbnail29 from '$lib/assets/gallery/thumbnail/29_thumb.webp';
+	import thumbnail30 from '$lib/assets/gallery/thumbnail/30_thumb.webp';
+	import thumbnail31 from '$lib/assets/gallery/thumbnail/31_thumb.webp';
+	import thumbnail32 from '$lib/assets/gallery/thumbnail/32_thumb.webp';
+	import thumbnail33 from '$lib/assets/gallery/thumbnail/33_thumb.webp';
+	import thumbnail34 from '$lib/assets/gallery/thumbnail/34_thumb.webp';
+	import thumbnail35 from '$lib/assets/gallery/thumbnail/35_thumb.webp';
+	import thumbnail36 from '$lib/assets/gallery/thumbnail/36_thumb.webp';
+	import thumbnail37 from '$lib/assets/gallery/thumbnail/37_thumb.webp';
+	import thumbnail38 from '$lib/assets/gallery/thumbnail/38_thumb.webp';
+	import thumbnail39 from '$lib/assets/gallery/thumbnail/39_thumb.webp';
 
 	let lightbox: PhotoSwipeLightBox | null = null;
 	let observer: IntersectionObserver | null = null;
@@ -156,32 +182,45 @@
 
 	// 이미지 메타데이터 (정적 import 사용)
 	const photos = [
-		{ src: photo24, thumbnail: thumbnail24, width: 4000, height: 6000 },
-		{ src: photo3, thumbnail: thumbnail3, width: 4000, height: 6000 },
-		{ src: photo1, thumbnail: thumbnail1, width: 4000, height: 6000 },
+		{ src: photo1, thumbnail: thumbnail1, width: 3938, height: 5907 },
 		{ src: photo2, thumbnail: thumbnail2, width: 4000, height: 6000 },
+		{ src: photo3, thumbnail: thumbnail3, width: 4000, height: 6000 },
 		{ src: photo4, thumbnail: thumbnail4, width: 4000, height: 6000 },
 		{ src: photo5, thumbnail: thumbnail5, width: 4000, height: 6000 },
 		{ src: photo6, thumbnail: thumbnail6, width: 4000, height: 6000 },
 		{ src: photo7, thumbnail: thumbnail7, width: 4000, height: 6000 },
-		{ src: photo13, thumbnail: thumbnail13, width: 1866, height: 2800 },
-		{ src: photo15, thumbnail: thumbnail15, width: 1866, height: 2800 },
-		{ src: photo16, thumbnail: thumbnail16, width: 1866, height: 2800 },
-		{ src: photo17, thumbnail: thumbnail17, width: 1866, height: 2800 },
-		{ src: photo19, thumbnail: thumbnail19, width: 1866, height: 2800 },
-		{ src: photo20, thumbnail: thumbnail20, width: 2100, height: 2800 },
-		{ src: photo21, thumbnail: thumbnail21, width: 1866, height: 2800 },
-		{ src: photo14, thumbnail: thumbnail14, width: 1866, height: 2800 },
-		{ src: photo18, thumbnail: thumbnail18, width: 1866, height: 2800 },
 		{ src: photo8, thumbnail: thumbnail8, width: 4000, height: 6000 },
-		{ src: photo22, thumbnail: thumbnail22, width: 1866, height: 2800 },
+		{ src: photo9, thumbnail: thumbnail9, width: 4000, height: 6000 },
+		{ src: photo10, thumbnail: thumbnail10, width: 3993, height: 4682 },
+		{ src: photo11, thumbnail: thumbnail11, width: 4000, height: 6000 },
+		{ src: photo12, thumbnail: thumbnail12, width: 4000, height: 6000 },
+		{ src: photo13, thumbnail: thumbnail13, width: 4000, height: 6000 },
+		{ src: photo14, thumbnail: thumbnail14, width: 4000, height: 6000 },
+		{ src: photo15, thumbnail: thumbnail15, width: 4000, height: 6000 },
+		{ src: photo16, thumbnail: thumbnail16, width: 4000, height: 6000 },
+		{ src: photo17, thumbnail: thumbnail17, width: 4000, height: 6000 },
+		{ src: photo18, thumbnail: thumbnail18, width: 4000, height: 6000 },
+		{ src: photo19, thumbnail: thumbnail19, width: 4000, height: 6000 },
+		{ src: photo20, thumbnail: thumbnail20, width: 4000, height: 6000 },
+		{ src: photo21, thumbnail: thumbnail21, width: 4000, height: 6000 },
+		{ src: photo22, thumbnail: thumbnail22, width: 4000, height: 6000 },
 		{ src: photo23, thumbnail: thumbnail23, width: 4000, height: 6000 },
-		{ src: photo25, thumbnail: thumbnail25, width: 5570, height: 4557 },
-		{ src: photo26, thumbnail: thumbnail26, width: 4974, height: 3880 },
-		{ src: photo27, thumbnail: thumbnail27, width: 4825, height: 4256 },
-		{ src: photo28, thumbnail: thumbnail28, width: 4672, height: 7008 },
-		{ src: photo29, thumbnail: thumbnail29, width: 4000, height: 6000 },
-		{ src: photo30, thumbnail: thumbnail30, width: 4000, height: 6000 }
+		{ src: photo24, thumbnail: thumbnail24, width: 4000, height: 6000 },
+		{ src: photo25, thumbnail: thumbnail25, width: 4000, height: 6000 },
+		{ src: photo26, thumbnail: thumbnail26, width: 4000, height: 6000 },
+		{ src: photo27, thumbnail: thumbnail27, width: 4000, height: 6000 },
+		{ src: photo28, thumbnail: thumbnail28, width: 4000, height: 6000 },
+		{ src: photo29, thumbnail: thumbnail29, width: 3867, height: 5800 },
+		{ src: photo30, thumbnail: thumbnail30, width: 4000, height: 6000 },
+		{ src: photo31, thumbnail: thumbnail31, width: 4000, height: 6000 },
+		{ src: photo32, thumbnail: thumbnail32, width: 4000, height: 6000 },
+		{ src: photo33, thumbnail: thumbnail33, width: 4000, height: 6000 },
+		{ src: photo34, thumbnail: thumbnail34, width: 4000, height: 6000 },
+		{ src: photo35, thumbnail: thumbnail35, width: 4000, height: 6000 },
+		{ src: photo36, thumbnail: thumbnail36, width: 4000, height: 6000 },
+		{ src: photo37, thumbnail: thumbnail37, width: 4000, height: 6000 },
+		{ src: photo38, thumbnail: thumbnail38, width: 4000, height: 6000 },
+		{ src: photo39, thumbnail: thumbnail39, width: 4000, height: 6000 },
 	];
 </script>
 
