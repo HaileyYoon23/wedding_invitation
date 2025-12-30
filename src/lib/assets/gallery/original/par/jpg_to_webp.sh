@@ -12,7 +12,7 @@ for file in *.jpg *.JPG *.jpeg *.JPEG; do
 
         # WebP로 변환
         echo "Converting: $file -> ${filename}.webp"
-        cwebp -q 85 "$file" -o "${filename}.webp"
+        cwebp -q 100 "$file" -o "${filename}.webp"
 
         if [ $? -eq 0 ]; then
             echo "✓ Successfully converted: $file"
