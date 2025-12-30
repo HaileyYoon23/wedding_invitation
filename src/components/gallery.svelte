@@ -191,7 +191,7 @@
 		{ src: photo7, thumbnail: thumbnail7, width: 4000, height: 6000 },
 		{ src: photo8, thumbnail: thumbnail8, width: 4000, height: 6000 },
 		{ src: photo9, thumbnail: thumbnail9, width: 4000, height: 6000 },
-		{ src: photo10, thumbnail: thumbnail10, width: 3993, height: 4682 },
+		{ src: photo10, thumbnail: thumbnail10, width: 2160, height: 2534 },
 		{ src: photo11, thumbnail: thumbnail11, width: 4000, height: 6000 },
 		{ src: photo12, thumbnail: thumbnail12, width: 4000, height: 6000 },
 		{ src: photo13, thumbnail: thumbnail13, width: 4000, height: 6000 },
